@@ -77,7 +77,8 @@ export const Route = createFileRoute("/")({
 const PHONE = "01443 473 555";
 const TEL = `tel:${PHONE.replace(/\s/g, "")}`;
 const WHATSAPP = `https://wa.me/44${PHONE.replace(/\s/g, "").replace(/^0/, "")}`;
-const WHATSAPP_ICON = "https://img.icons8.com/?size=100&id=7OeRNqg6S7Vf&format=png&color=000000";
+const WHATSAPP_ICON =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%2325D366' d='M24 4C12.95 4 4 12.95 4 24c0 3.53.92 6.85 2.53 9.73L4.1 43.1a1 1 0 0 0 1.23 1.23l9.46-2.48A19.9 19.9 0 0 0 24 44c11.05 0 20-8.95 20-20S35.05 4 24 4z'/%3E%3Cpath fill='%23FFFFFF' d='M35.3 29.8c-.45-.23-2.68-1.32-3.1-1.47-.41-.15-.71-.23-1.01.23-.3.45-1.16 1.47-1.42 1.77-.26.3-.53.34-.98.11-.45-.23-1.9-.7-3.62-2.23-1.34-1.19-2.25-2.66-2.51-3.11-.26-.45-.03-.7.2-.92.2-.2.45-.53.68-.79.23-.26.3-.45.45-.75.15-.3.08-.57-.04-.79-.11-.23-1.01-2.44-1.39-3.34-.37-.88-.74-.76-1.01-.77-.26-.02-.56-.02-.86-.02-.3 0-.79.11-1.2.57-.41.45-1.58 1.54-1.58 3.76s1.61 4.36 1.84 4.66c.23.3 3.17 4.84 7.68 6.79 1.07.46 1.91.74 2.56.95 1.08.34 2.06.29 2.84.18.87-.13 2.68-1.1 3.06-2.15.38-1.06.38-1.96.26-2.15-.11-.2-.41-.31-.86-.54z'/%3E%3C/svg%3E";
 
 const navItems = [
   { label: "Overview", href: "#overview" },
@@ -377,7 +378,7 @@ function EmergencyPage() {
       <Toaster />
 
       <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
-        <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-3 md:grid-cols-[1fr_auto_1fr]">
+        <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 sm:px-5 py-3 md:grid-cols-[1fr_auto_1fr]">
           <img
             src={logoImg}
             alt="KAA Dentals — smile with confidence"
@@ -391,6 +392,12 @@ function EmergencyPage() {
               rel="noreferrer"
               className="hidden items-center gap-2 rounded-cta bg-whatsapp px-4 py-2 text-sm font-medium text-whatsapp-foreground shadow-sm transition hover:opacity-90 sm:inline-flex"
             >
+              <img
+                src={WHATSAPP_ICON}
+                alt="WhatsApp"
+                className="h-4 w-4 shrink-0"
+                referrerPolicy="no-referrer"
+              />
               WhatsApp
             </a>
             <button
@@ -450,14 +457,17 @@ function EmergencyPage() {
 
       {/* Hero */}
       <section id="hero" className="surface-navy relative overflow-hidden">
-        <div className="mx-auto grid max-w-6xl items-start gap-8 sm:gap-10 px-5 py-10 sm:py-14 md:grid-cols-[1.15fr_1fr] md:gap-12 md:py-20 lg:py-24">
+        <div className="mx-auto grid max-w-6xl items-start gap-8 sm:gap-10 px-4 sm:px-5 py-10 sm:py-14 md:grid-cols-[1.15fr_1fr] md:gap-12 md:py-20 lg:py-24">
           <div className="flex flex-col">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: EASE_OUT }}
             >
-              <Badge light className="text-[11px] sm:text-xs">
+              <Badge
+                light
+                className="text-[9.5px] xs:text-[10px] sm:text-xs px-2.5 py-0.5 sm:px-3.5 sm:py-1 tracking-[0.05em] sm:tracking-[0.12em]"
+              >
                 Same-Day Urgent Care • Mountain Ash &amp; Rhymney
               </Badge>
             </motion.div>
@@ -557,11 +567,7 @@ function EmergencyPage() {
             <div>
               <div className="flex items-start justify-between gap-3 border-b border-border/70 pb-4 sm:pb-5">
                 <div>
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/15 px-2.5 py-0.5 sm:px-3 sm:py-1 text-[11px] sm:text-xs font-semibold text-primary">
-                    <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-gold" />
-                    Emergency Care Available
-                  </span>
-                  <h3 className="mt-2 sm:mt-2.5 text-base sm:text-xl md:text-2xl font-bold leading-snug sm:leading-tight text-foreground">
+                  <h3 className="text-base sm:text-xl md:text-2xl font-bold leading-snug sm:leading-tight text-foreground">
                     Book Your Emergency Appointment From £50
                   </h3>
                 </div>
@@ -595,10 +601,6 @@ function EmergencyPage() {
                 <p className="text-[11px] sm:text-xs font-bold tracking-[0.1em] sm:tracking-[0.12em] uppercase text-muted-foreground">
                   Call our practices directly:
                 </p>
-                <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-medium text-emerald-600 dark:text-emerald-400">
-                  <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-emerald-500 animate-pulse" />
-                  Direct Lines
-                </span>
               </div>
 
               <div
@@ -653,7 +655,10 @@ function EmergencyPage() {
       </section>
 
       {/* Overview Section */}
-      <section id="overview" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-16 md:py-24">
+      <section
+        id="overview"
+        className="mx-auto max-w-6xl scroll-mt-24 px-4 sm:px-5 py-8 sm:py-12 md:py-24"
+      >
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
           {/* Left Column: Toothcare Relief Image (Clean, without overlays) */}
           <motion.div
@@ -727,7 +732,7 @@ function EmergencyPage() {
 
       {/* Request form */}
       <section id="request" className="surface-navy scroll-mt-24">
-        <div className="mx-auto max-w-6xl px-5 py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-5 py-8 sm:py-12 md:py-24">
           <div className="grid gap-12 lg:grid-cols-[1fr_1.15fr] lg:items-start">
             {/* Left side: Badge, header, description, and details */}
             <motion.div
@@ -983,7 +988,10 @@ function EmergencyPage() {
       </Dialog>
 
       {/* What happens */}
-      <section id="process" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-16 md:py-24">
+      <section
+        id="process"
+        className="mx-auto max-w-6xl scroll-mt-24 px-4 sm:px-5 py-8 sm:py-12 md:py-24"
+      >
         <SectionHeading
           badge="The process"
           title="What happens at your emergency appointment?"
@@ -1082,7 +1090,7 @@ function EmergencyPage() {
 
       {/* Problems */}
       <section id="problems" className="scroll-mt-24 border-y border-border bg-secondary/40">
-        <div className="mx-auto max-w-6xl px-5 py-16 md:py-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-5 py-8 sm:py-12 md:py-24">
           <SectionHeading
             badge="Problems we treat"
             title="Emergency Toothache Treatment"
@@ -1129,7 +1137,10 @@ function EmergencyPage() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-16 md:py-24">
+      <section
+        id="faq"
+        className="mx-auto max-w-6xl scroll-mt-24 px-4 sm:px-5 py-8 sm:py-12 md:py-24"
+      >
         <div className="grid gap-10 lg:grid-cols-[1fr_1.35fr] lg:items-start">
           {/* Left side: Badge and header */}
           <motion.div
@@ -1171,7 +1182,7 @@ function EmergencyPage() {
 
       {/* Areas */}
       <section className="surface-navy">
-        <div className="mx-auto max-w-6xl px-5 py-16 md:py-20">
+        <div className="mx-auto max-w-6xl px-4 sm:px-5 py-8 sm:py-12 md:py-20">
           <SectionHeading
             light
             badge="Local area"
@@ -1202,7 +1213,10 @@ function EmergencyPage() {
       </section>
 
       {/* Practices */}
-      <section id="practices" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-16 md:py-24">
+      <section
+        id="practices"
+        className="mx-auto max-w-6xl scroll-mt-24 px-4 sm:px-5 py-8 sm:py-12 md:py-24"
+      >
         <SectionHeading
           badge="Practices"
           title="Find your nearest KAA practice"
@@ -1318,7 +1332,7 @@ function EmergencyPage() {
 
       {/* Footer CTA Section */}
       <section className="surface-navy relative overflow-hidden border-t border-gold/30">
-        <div className="mx-auto max-w-5xl px-5 py-12 sm:py-16 md:py-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-5 py-8 sm:py-12 md:py-20">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -1377,7 +1391,7 @@ function EmergencyPage() {
           <img
             src={WHATSAPP_ICON}
             alt="WhatsApp"
-            className="h-4 w-4 brightness-0 invert"
+            className="h-5 w-5 shrink-0"
             referrerPolicy="no-referrer"
           />
           WhatsApp
