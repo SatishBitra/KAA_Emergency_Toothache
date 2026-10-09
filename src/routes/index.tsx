@@ -22,6 +22,7 @@ import ke2Img from "@/assets/ke2.png";
 import ke3Img from "@/assets/ke3.png";
 import ke4Img from "@/assets/ke4.png";
 import ke5Img from "@/assets/ke5.png";
+import bg1Img from "@/assets/bg-1.png.webp";
 import {
   Accordion,
   AccordionContent,
@@ -81,68 +82,69 @@ const navItems = [
   { label: "Overview", href: "#overview" },
   { label: "The process", href: "#process" },
   { label: "Problems", href: "#problems" },
-  { label: "Questions", href: "#faq" },
+  { label: "FAQ", href: "#faq" },
   { label: "Practices", href: "#practices" },
 ];
 
 const problems = [
   {
-    title: "Toothache",
-    body: "Severe or ongoing tooth pain?",
+    title: "Severe toothache",
+    body: "Severe, persistent or throbbing tooth pain requiring urgent dental diagnosis and relief.",
     cta: "Toothache treatment",
     image: ke1Img,
   },
   {
-    title: "Broken or chipped tooth",
-    body: "Broken, cracked or chipped your tooth?",
-    cta: "Broken tooth treatment",
+    title: "Tooth decay",
+    body: "Pain caused by deep cavities, untreated decay reaching sensitive inner nerves.",
+    cta: "Tooth decay treatment",
     image: ke2Img,
   },
   {
-    title: "Swelling or dental abscess",
-    body: "Swelling, infection or a painful lump?",
-    cta: "Dental abscess treatment",
+    title: "Dental infection",
+    body: "Bacterial infection, swelling around the gumline or a painful dental abscess.",
+    cta: "Dental infection treatment",
     image: ke3Img,
   },
   {
-    title: "Lost filling or crown",
-    body: "Lost or damaged a filling or crown?",
-    cta: "Lost filling treatment",
+    title: "Broken or cracked teeth",
+    body: "Fractured, chipped or cracked teeth causing severe sensitivity or sharp edges.",
+    cta: "Broken tooth treatment",
     image: ke4Img,
   },
   {
-    title: "Tooth extraction",
-    body: "A painful or badly damaged tooth that may need removing?",
-    cta: "Tooth extraction",
-    image: ke5Img,
+    title: "Lost fillings or crowns",
+    body: "Dislodged, lost or broken fillings and crowns leaving exposed, tender teeth.",
+    cta: "Lost filling treatment",
+    image: ke1Img,
   },
   {
-    title: "Not sure what's wrong?",
-    body: "That's fine. Call us and we'll advise you on what to do next.",
-    cta: "Call now",
+    title: "Damaged or infected teeth",
+    body: "Compromised or damaged teeth needing immediate pain stabilization or extraction.",
+    cta: "Damaged tooth treatment",
+    image: ke5Img,
   },
 ];
 
 const faqs = [
   {
-    q: "Can I get an emergency appointment today?",
-    a: "We offer same-day emergency appointments when available. Call us or complete the booking form and we'll help you find the next available appointment.",
+    q: "How quickly can I see an emergency dentist for toothache?",
+    a: "We offer same-day emergency appointments when available. Call us to check availability.",
   },
   {
-    q: "How much is an emergency appointment?",
-    a: "Our emergency appointment is £50. This covers your emergency examination and X-rays if needed. Any further treatment will be explained and priced before we proceed.",
+    q: "How much does an emergency toothache appointment cost?",
+    a: "Emergency appointments are available from £50, including an examination and X-ray if required.",
   },
   {
-    q: "What dental problems can you treat?",
-    a: "We can help with toothache, broken or chipped teeth, dental abscesses, swelling, lost fillings or crowns, and other urgent dental problems.",
+    q: "Can you treat severe tooth pain?",
+    a: "Yes. Our emergency dentist will assess the cause of your tooth pain and recommend the most suitable treatment.",
   },
   {
-    q: "What if I'm nervous about the dentist?",
-    a: "That's completely understandable. Let us know when you book and we'll take extra time to explain what's happening and answer your questions.",
+    q: "Can I get treatment for an infected tooth?",
+    a: "Yes. Depending on the condition of the tooth, treatment may include a filling, root canal treatment or extraction.",
   },
   {
-    q: "Can I be seen if I'm not a regular patient?",
-    a: "Yes. You can contact us to request an emergency appointment even if you're a new patient.",
+    q: "Do you treat toothache caused by a broken tooth or lost filling?",
+    a: "Yes. We provide emergency treatment for broken, cracked or damaged teeth, as well as lost fillings and crowns.",
   },
 ];
 
@@ -291,106 +293,9 @@ function PillNav({ active }: { active: string }) {
   );
 }
 
-/* 4 stack side-by-side blocks (as per brand guidelines and attached design layout) */
+/* 4 stack side-by-side blocks (hidden as requested) */
 function PillarsSection() {
-  return (
-    <section className="border-y border-border bg-card shadow-xs">
-      <div className="mx-auto max-w-6xl">
-        <div className="border-b border-border/70 px-6 pt-7 pb-4 md:hidden">
-          <h2 className="text-2xl font-medium leading-tight text-foreground">
-            Why book with KAA Dentals?
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 divide-y divide-border sm:grid-cols-2 sm:divide-y-0 sm:divide-x lg:grid-cols-4">
-          {/* Block 1: Local Emergency Care */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5, delay: 0, ease: EASE_OUT }}
-            className="flex items-center gap-4 px-6 py-6 transition-colors hover:bg-secondary/20 lg:py-8"
-          >
-            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-gold/60 bg-gold/10 text-gold">
-              <MapPin className="h-5 w-5" />
-            </span>
-            <div>
-              <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-muted-foreground">
-                LOCAL CARE
-              </p>
-              <p className="mt-0.5 font-display text-base font-medium leading-snug text-foreground md:text-lg">
-                Local emergency care
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Block 2: Same-day emergency appointments */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5, delay: 0.08, ease: EASE_OUT }}
-            className="flex items-center gap-4 px-6 py-6 transition-colors hover:bg-secondary/20 lg:py-8"
-          >
-            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-gold/60 bg-gold/10 text-gold">
-              <Clock className="h-5 w-5" />
-            </span>
-            <div>
-              <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-muted-foreground">
-                AVAILABILITY
-              </p>
-              <p className="mt-0.5 font-display text-base font-medium leading-snug text-foreground md:text-lg">
-                Same-day emergency appointments
-                <span className="md:hidden"> when available</span>
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Block 3: No routine waiting list */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5, delay: 0.16, ease: EASE_OUT }}
-            className="flex items-center gap-4 px-6 py-6 transition-colors hover:bg-secondary/20 lg:py-8"
-          >
-            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-gold/60 bg-gold/10 text-gold">
-              <ShieldCheck className="h-5 w-5" />
-            </span>
-            <div>
-              <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-muted-foreground">
-                DIRECT ACCESS
-              </p>
-              <p className="mt-0.5 font-display text-base font-medium leading-snug text-foreground md:text-lg">
-                No routine waiting list for emergency
-                <span className="md:hidden"> care</span>
-              </p>
-            </div>
-          </motion.div>
-
-          {/* Block 4: Gentle care for nervous patients */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5, delay: 0.24, ease: EASE_OUT }}
-            className="flex items-center gap-4 px-6 py-6 transition-colors hover:bg-secondary/20 lg:py-8"
-          >
-            <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-gold/60 bg-gold/10 text-gold">
-              <HeartHandshake className="h-5 w-5" />
-            </span>
-            <div>
-              <p className="text-[11px] font-semibold tracking-[0.14em] uppercase text-muted-foreground">
-                PATIENT COMFORT
-              </p>
-              <p className="mt-0.5 font-display text-base font-medium leading-snug text-foreground md:text-lg">
-                Gentle care for nervous patients
-              </p>
-            </div>
-          </motion.div>
-        </div>
-      </div>
-    </section>
-  );
+  return null;
 }
 
 function EmergencyPage() {
@@ -421,20 +326,6 @@ function EmergencyPage() {
       blinkTimerRef.current = setTimeout(() => {
         setIsCallingPracticesBlinking(false);
       }, 5000);
-    }
-  };
-
-  const handleProblemsCallClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (window.innerWidth < 768) {
-      handleMobileCallClick(e);
-    } else {
-      const hero = document.getElementById("hero");
-      if (hero) {
-        hero.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
     }
   };
 
@@ -539,89 +430,98 @@ function EmergencyPage() {
       </header>
 
       {/* Hero */}
-      <section id="hero" className="surface-navy">
-        <div className="mx-auto grid max-w-6xl gap-12 px-5 py-16 md:grid-cols-[1.15fr_1fr] md:py-24">
-          <div>
+      <section id="hero" className="surface-navy relative overflow-hidden">
+        <div className="mx-auto grid max-w-6xl items-start gap-10 px-5 py-14 sm:py-16 md:grid-cols-[1.15fr_1fr] md:gap-12 md:py-20 lg:py-24">
+          <div className="flex flex-col">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: EASE_OUT }}
             >
-              <Badge light>Emergency Dentist in Mountain Ash &amp; Rhymney</Badge>
+              <Badge light>Same-Day Urgent Care • Mountain Ash &amp; Rhymney</Badge>
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.08, ease: EASE_OUT }}
-              className="mt-5 text-4xl leading-[1.05] md:text-6xl"
+              className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.12]"
             >
-              In pain? <span className="text-gradient-gold">Call us today.</span>
+              Severe Toothache?{" "}
+              <span className="text-gradient-gold block sm:inline">Get Help Today</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.16, ease: EASE_OUT }}
-              className="mt-5 max-w-xl text-base leading-relaxed opacity-90 md:text-lg"
+              transition={{ duration: 0.55, delay: 0.14, ease: EASE_OUT }}
+              className="mt-4 text-lg font-semibold text-gold-soft md:text-xl"
             >
-              Need urgent dental care? We can help with toothache, broken teeth, swelling, dental
-              abscesses and other dental emergencies.
+              Emergency toothache treatment from KAA Dentals.
             </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
+            <motion.p
+              initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.24, ease: EASE_OUT }}
-              className="mt-8 flex flex-wrap items-center gap-3"
+              transition={{ duration: 0.55, delay: 0.18, ease: EASE_OUT }}
+              className="mt-2 text-base leading-relaxed text-slate-200/90 md:text-lg"
             >
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <button
-                    type="button"
-                    className={`${CTA_BASE} bg-gold text-primary shadow-[var(--shadow-soft)] hover:-translate-y-0.5 active:scale-[0.99]`}
-                  >
-                    <Phone className="h-4 w-4" />
-                    <span>Call us now</span>
-                    <ChevronDown className="h-4 w-4 opacity-80" />
-                  </button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                  align="start"
-                  className="w-72 rounded-2xl border border-border bg-card p-2 text-card-foreground shadow-xl"
-                >
-                  <div className="px-3 py-2 text-xs font-semibold tracking-wider uppercase text-muted-foreground">
-                    Call our practices directly:
-                  </div>
-                  <DropdownMenuItem asChild>
-                    <a
-                      href="tel:01443474441"
-                      className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium transition-colors hover:bg-secondary focus:bg-secondary"
-                    >
-                      <span className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4 shrink-0 text-gold" />
-                        <span className="font-semibold text-primary">Mountain Ash</span>
-                      </span>
-                      <span className="flex items-center gap-1.5 font-bold tracking-tight text-foreground">
-                        <Phone className="h-3.5 w-3.5 shrink-0 text-gold" />
-                        <span>01443 474 441</span>
-                      </span>
-                    </a>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <a
-                      href="tel:01685840700"
-                      className="flex cursor-pointer items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium transition-colors hover:bg-secondary focus:bg-secondary"
-                    >
-                      <span className="flex items-center gap-2">
-                        <MapPin className="h-4 w-4 shrink-0 text-gold" />
-                        <span className="font-semibold text-primary">Rhymney</span>
-                      </span>
-                      <span className="flex items-center gap-1.5 font-bold tracking-tight text-foreground">
-                        <Phone className="h-3.5 w-3.5 shrink-0 text-gold" />
-                        <span>01685 840 700</span>
-                      </span>
-                    </a>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              Get your tooth checked, find the cause of your pain and understand your treatment
+              options.
+            </motion.p>
+
+            {/* Inclusions Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.22, ease: EASE_OUT }}
+              className="mt-7 rounded-2xl border border-gold/30 bg-white/[0.06] p-5.5 backdrop-blur-md sm:p-6"
+            >
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/15 pb-4">
+                <h2 className="text-base font-semibold tracking-wide text-white sm:text-lg">
+                  Emergency Appointments From £50
+                </h2>
+                <span className="rounded-full bg-gold/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gold">
+                  Fixed Assessment
+                </span>
+              </div>
+
+              <ul className="mt-4 space-y-2.5 text-sm sm:text-base text-slate-100">
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
+                    <Check className="h-3.5 w-3.5 stroke-[2.5]" />
+                  </span>
+                  <span>Dental examination</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
+                    <Check className="h-3.5 w-3.5 stroke-[2.5]" />
+                  </span>
+                  <span>Assessment of your tooth pain</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
+                    <Check className="h-3.5 w-3.5 stroke-[2.5]" />
+                  </span>
+                  <span>X-ray if required</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
+                    <Check className="h-3.5 w-3.5 stroke-[2.5]" />
+                  </span>
+                  <span>Antibiotics where clinically appropriate</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
+                    <Check className="h-3.5 w-3.5 stroke-[2.5]" />
+                  </span>
+                  <span>Advice on the next step</span>
+                </li>
+              </ul>
+
+              <div className="mt-4.5 border-t border-white/15 pt-3.5">
+                <p className="text-xs leading-relaxed text-slate-200/85 sm:text-sm">
+                  If you need additional treatment, we'll explain your options and the cost before
+                  proceeding.
+                </p>
+              </div>
             </motion.div>
           </div>
 
@@ -629,139 +529,174 @@ function EmergencyPage() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.15, ease: EASE_OUT }}
-            className="rounded-2xl border border-gold/30 bg-card p-7 text-card-foreground shadow-[var(--shadow-soft)]"
+            className="flex flex-col justify-between rounded-2xl border border-gold/40 bg-card p-6 sm:p-7 md:p-8 text-card-foreground shadow-[var(--shadow-soft)]"
           >
-            <p className="text-sm font-medium text-[#666c87]">You can also book online</p>
-            <div className="mt-3 flex items-center justify-between gap-4">
-              <p className="text-[16px] font-bold leading-snug text-black md:text-[20px] md:font-normal">
-                The Emergency Appointment Fee
-              </p>
-              <p className="font-display text-5xl text-primary shrink-0">£50</p>
-            </div>
-            <a
-              href="#request"
-              className={`${CTA_BASE} mt-5 w-full bg-primary text-primary-foreground hover:-translate-y-0.5`}
-            >
-              Book an appointment
-            </a>
+            <div>
+              <div className="flex items-start justify-between gap-4 border-b border-border/70 pb-5">
+                <div>
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/15 px-3 py-1 text-xs font-semibold text-primary">
+                    <Clock className="h-3.5 w-3.5 text-gold" />
+                    Emergency Care Available
+                  </span>
+                  <h3 className="mt-2.5 text-xl font-bold leading-tight text-foreground sm:text-2xl">
+                    Book Your Emergency Appointment From £50
+                  </h3>
+                </div>
+                <div className="shrink-0 text-right">
+                  <span className="block text-xs font-medium text-muted-foreground">From</span>
+                  <span className="font-display text-4xl font-extrabold text-primary leading-none sm:text-5xl">
+                    £50
+                  </span>
+                </div>
+              </div>
 
-            {/* Two locations with each phone number as CTA */}
+              {/* Primary Booking CTA */}
+              <div className="mt-6">
+                <a
+                  href="#request"
+                  className={`${CTA_BASE} w-full bg-gold text-primary text-sm sm:text-base font-bold tracking-wide shadow-[var(--shadow-soft)] hover:bg-gold/90 hover:-translate-y-0.5 active:scale-[0.99]`}
+                >
+                  Book Emergency Appointment
+                </a>
+              </div>
+            </div>
+
+            {/* Direct Practice Contact Numbers */}
             <div
               id="hero-call-practices"
-              className="mt-6 border-t border-border/70 pt-5 scroll-mt-28"
+              className="mt-8 border-t border-border/70 pt-6 scroll-mt-28"
             >
-              <p className="text-xs font-semibold tracking-[0.12em] uppercase text-muted-foreground">
-                Call our practices directly:
-              </p>
+              <div className="flex items-center justify-between">
+                <p className="text-xs font-bold tracking-[0.12em] uppercase text-muted-foreground">
+                  Call our practices directly:
+                </p>
+                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                  Direct Lines
+                </span>
+              </div>
+
               <div
-                className={`mt-2.5 flex flex-col gap-2 rounded-2xl p-2.5 transition-all duration-300 ${
+                className={`mt-3 flex flex-col gap-2 rounded-2xl p-2 transition-all duration-300 ${
                   isCallingPracticesBlinking
-                    ? "border-2 border-gold animate-gold-border-blink bg-gold/5 shadow-[0_0_16px_rgba(200,160,80,0.35)] md:animate-none md:border-transparent md:bg-transparent md:shadow-none"
-                    : "border-2 border-transparent"
+                    ? "border-2 border-gold animate-gold-border-blink bg-gold/10 shadow-[0_0_16px_rgba(200,160,80,0.35)]"
+                    : "border border-border/60 bg-secondary/35"
                 }`}
               >
                 <a
                   href="tel:01443474441"
                   onClick={() => setIsCallingPracticesBlinking(false)}
-                  className="group flex items-center justify-between rounded-xl px-2.5 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-gold/10 hover:text-gold"
+                  className="group flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium transition-colors hover:bg-gold/15"
                 >
-                  <span className="flex items-center gap-2">
+                  <span className="flex items-center gap-2.5">
                     <MapPin className="h-4 w-4 shrink-0 text-gold transition-transform group-hover:scale-110" />
-                    <span className="font-semibold text-primary">Mountain Ash</span>
+                    <span className="font-semibold text-foreground">Mountain Ash</span>
                   </span>
-                  <span className="flex items-center gap-1.5 font-bold tracking-tight text-foreground transition-colors group-hover:text-gold">
-                    <Phone className="h-3.5 w-3.5 shrink-0 text-gold transition-transform group-hover:scale-110" />
-                    <span>01443 474 441</span>
+                  <span className="flex items-center gap-1.5 font-bold tracking-tight text-primary transition-colors group-hover:text-gold">
+                    <Phone className="h-3.5 w-3.5 shrink-0 text-gold" />
+                    <span className="tabular-nums">01443 474 441</span>
                   </span>
                 </a>
+
                 <a
                   href="tel:01685840700"
                   onClick={() => setIsCallingPracticesBlinking(false)}
-                  className="group flex items-center justify-between rounded-xl px-2.5 py-1.5 text-sm font-medium text-foreground transition-colors hover:bg-gold/10 hover:text-gold"
+                  className="group flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium transition-colors hover:bg-gold/15"
                 >
-                  <span className="flex items-center gap-2">
+                  <span className="flex items-center gap-2.5">
                     <MapPin className="h-4 w-4 shrink-0 text-gold transition-transform group-hover:scale-110" />
-                    <span className="font-semibold text-primary">Rhymney</span>
+                    <span className="font-semibold text-foreground">Rhymney</span>
                   </span>
-                  <span className="flex items-center gap-1.5 font-bold tracking-tight text-foreground transition-colors group-hover:text-gold">
-                    <Phone className="h-3.5 w-3.5 shrink-0 text-gold transition-transform group-hover:scale-110" />
-                    <span>01685 840 700</span>
+                  <span className="flex items-center gap-1.5 font-bold tracking-tight text-primary transition-colors group-hover:text-gold">
+                    <Phone className="h-3.5 w-3.5 shrink-0 text-gold" />
+                    <span className="tabular-nums">01685 840 700</span>
                   </span>
                 </a>
               </div>
 
-              {/* Timings under locations */}
-              <div className="mt-3.5 border-t border-border/60 pt-3">
-                <div className="flex items-center justify-between py-1.5 text-sm font-medium text-foreground">
-                  <span className="flex items-center gap-2">
-                    <Clock className="h-4 w-4 text-gold shrink-0" />
-                    <span className="font-semibold text-primary">Monday to Saturday</span>
-                  </span>
-                  <span className="font-bold tracking-tight text-foreground">9AM – 5PM</span>
-                </div>
+              {/* Practice Hours */}
+              <div className="mt-3.5 flex items-center justify-between rounded-xl bg-secondary/30 px-3.5 py-2.5 text-xs sm:text-sm font-medium">
+                <span className="flex items-center gap-2 text-muted-foreground">
+                  <Clock className="h-4 w-4 text-gold shrink-0" />
+                  <span>Monday to Saturday</span>
+                </span>
+                <span className="font-bold text-foreground">9AM – 5PM</span>
               </div>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* 4 Pillars Section */}
-      <PillarsSection />
-
-      {/* One problem, one appointment */}
+      {/* Overview Section */}
       <section id="overview" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-16 md:py-24">
-        <SectionHeading
-          badge="Overview"
-          title="One problem, one appointment — focused on getting you out of pain."
-        />
-        <div className="mt-8 grid gap-10 md:grid-cols-2">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          {/* Left Column: Toothcare Relief Image (Clean, without overlays) */}
           <motion.div
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, delay: 0.1, ease: EASE_OUT }}
-            className="space-y-4 text-muted-foreground"
+            transition={{ duration: 0.6, ease: EASE_OUT }}
+            className="overflow-hidden rounded-3xl border border-border bg-card p-2 shadow-lg"
           >
-            <p>
-              When you're in dental pain, you need to know what's wrong and what to do next. Our
-              emergency appointments are designed to assess the problem, take X-rays if needed and
-              give you clear treatment options.
-            </p>
-            <p className="text-foreground">
-              From toothache and broken teeth to swelling and abscesses, we're here to help.
-            </p>
-            <div className="rounded-xl border border-border bg-secondary/60 p-5">
-              <h3 className="text-lg text-foreground">
-                No routine waiting list for emergency appointments
-              </h3>
-              <p className="mt-2 text-sm">
-                If you need urgent dental care, you don't have to wait for a routine check-up
-                appointment. We keep your emergency appointment simple, clear and focused on getting
-                you the help you need.
-              </p>
+            <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-secondary/60 sm:aspect-[16/11]">
+              <img
+                src={ke1Img}
+                alt="Severe toothache emergency dental care"
+                className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                loading="lazy"
+              />
             </div>
           </motion.div>
 
-          <motion.figure
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
+          {/* Right Column: Content and Button */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.6, delay: 0.2, ease: EASE_OUT }}
-            className="flex flex-col justify-center rounded-2xl border border-gold/40 bg-card p-7 shadow-[var(--shadow-soft)]"
+            transition={{ duration: 0.6, delay: 0.1, ease: EASE_OUT }}
+            className="flex flex-col items-start"
           >
-            <div className="flex gap-1 text-gold">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="h-5 w-5 fill-current" />
-              ))}
+            <Badge>Toothache Relief</Badge>
+
+            <h2 className="mt-4 text-2xl leading-tight md:text-3xl">
+              Toothache Getting Worse? We Can Help.
+            </h2>
+
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+              Severe tooth pain can make eating, sleeping and everyday life difficult.
+            </p>
+
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+              Our emergency dentists can assess your toothache and provide the right treatment to
+              help deal with the problem.
+            </p>
+
+            {/* Inclusions summary pills */}
+            <div className="mt-6 flex flex-wrap gap-2.5">
+              <span className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-secondary/50 px-3 py-1.5 text-xs font-medium text-foreground">
+                <Check className="h-3.5 w-3.5 text-gold" />
+                Fast pain diagnosis
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-secondary/50 px-3 py-1.5 text-xs font-medium text-foreground">
+                <Check className="h-3.5 w-3.5 text-gold" />
+                X-rays included if needed
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-secondary/50 px-3 py-1.5 text-xs font-medium text-foreground">
+                <Check className="h-3.5 w-3.5 text-gold" />
+                Gentle &amp; reassuring care
+              </span>
             </div>
-            <blockquote className="mt-4 font-display text-lg leading-relaxed">
-              "I had an emergency and was able to get an appointment quickly. The dentist explained
-              everything clearly and made me feel at ease. The whole experience was very smooth."
-            </blockquote>
-            <figcaption className="mt-4 text-sm text-muted-foreground">
-              KAA Dentals patient
-            </figcaption>
-          </motion.figure>
+
+            {/* CTA Button */}
+            <div className="mt-8">
+              <a
+                href="#request"
+                className={`${CTA_BASE} bg-primary text-primary-foreground font-semibold shadow-sm hover:bg-primary/90 hover:shadow-md hover:-translate-y-0.5 active:scale-[0.99]`}
+              >
+                Book Your Emergency Appointment
+              </a>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -1123,41 +1058,14 @@ function EmergencyPage() {
       {/* Problems */}
       <section id="problems" className="scroll-mt-24 border-y border-border bg-secondary/40">
         <div className="mx-auto max-w-6xl px-5 py-16 md:py-24">
-          <SectionHeading badge="Problems we treat" title="What's bothering you?" />
+          <SectionHeading
+            badge="Problems we treat"
+            title="Emergency Toothache Treatment"
+            subtitle="We can help with tooth pain caused by:"
+          />
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {problems.map((p, idx) => {
-              const hasImage = idx < 5; // except the 6th card
               const colDelay = (idx % 3) * 0.1;
-
-              if (!hasImage) {
-                return (
-                  <motion.div
-                    key={p.title}
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.55, delay: colDelay, ease: EASE_OUT }}
-                    className="group flex flex-col justify-between rounded-2xl border border-gold/40 bg-card p-6 transition-all hover:border-gold hover:shadow-md"
-                  >
-                    <div>
-                      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl border border-gold/40 bg-gold/10 text-primary">
-                        <Phone className="h-5 w-5 text-gold" />
-                      </div>
-                      <h3 className="text-lg font-medium text-foreground">{p.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
-                    </div>
-                    <a
-                      href="#hero"
-                      onClick={handleProblemsCallClick}
-                      className="mt-6 inline-flex items-center justify-center gap-2 rounded-cta bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-90 active:scale-[0.99]"
-                    >
-                      <Phone className="h-4 w-4 text-gold" />
-                      {p.cta}
-                    </a>
-                  </motion.div>
-                );
-              }
-
               return (
                 <motion.div
                   key={p.title}
@@ -1165,25 +1073,27 @@ function EmergencyPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.55, delay: colDelay, ease: EASE_OUT }}
-                  className="group flex flex-col rounded-2xl border border-border bg-card p-6 transition-all hover:border-gold hover:shadow-md"
+                  className="group flex flex-col justify-between rounded-2xl border border-border bg-card p-6 transition-all hover:border-gold hover:shadow-md"
                 >
-                  {/* Image */}
-                  <div className="relative mb-4 aspect-[16/9] w-full overflow-hidden rounded-xl border border-border/70 bg-secondary transition-colors group-hover:border-gold/50">
-                    <img
-                      src={p.image}
-                      alt={p.title}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                  </div>
+                  <div>
+                    {/* Image */}
+                    <div className="relative mb-4 aspect-[16/9] w-full overflow-hidden rounded-xl border border-border/70 bg-secondary transition-colors group-hover:border-gold/50">
+                      <img
+                        src={p.image}
+                        alt={p.title}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
 
-                  <h3 className="text-lg font-medium text-foreground">{p.title}</h3>
-                  <p className="mt-2 flex-1 text-sm text-muted-foreground">{p.body}</p>
+                    <h3 className="text-lg font-medium text-foreground">{p.title}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
+                  </div>
                   <a
                     href="#request"
-                    className="mt-4 inline-flex items-center gap-1.5 text-sm text-primary"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors hover:text-gold"
                   >
-                    {p.cta}
+                    <span>{p.cta}</span>
                     <ArrowRight className="h-4 w-4 text-gold transition-transform group-hover:translate-x-1" />
                   </a>
                 </motion.div>
@@ -1204,9 +1114,9 @@ function EmergencyPage() {
             transition={{ duration: 0.6, ease: EASE_OUT }}
             className="lg:sticky lg:top-24"
           >
-            <Badge>Questions</Badge>
+            <Badge>FAQ</Badge>
             <h2 className="mt-4 max-w-3xl text-2xl leading-tight text-foreground md:text-3xl">
-              The things people actually ask.
+              Frequently Asked Questions About Emergency Toothache
             </h2>
           </motion.div>
 
@@ -1250,44 +1160,51 @@ function EmergencyPage() {
             transition={{ duration: 0.55, delay: 0.15, ease: EASE_OUT }}
             className="mt-8 flex flex-wrap items-center gap-2 sm:gap-2.5"
           >
-            {areas.map((a, i) => {
-              const isMainPractice = a === "Mountain Ash" || a === "Rhymney";
-              return (
-                <motion.li
-                  key={a}
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.35, delay: i * 0.02, ease: EASE_OUT }}
-                  className={
-                    isMainPractice
-                      ? "inline-flex items-center rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] text-white/85 transition-all hover:border-gold/60 hover:text-white sm:px-3.5 sm:py-1.5 sm:text-xs md:gap-1.5 md:border-2 md:border-gold md:bg-gold/20 md:px-4 md:py-2 md:text-sm md:font-semibold md:text-gold-soft md:shadow-[0_0_10px_rgba(200,160,80,0.2)]"
-                      : "inline-flex items-center rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] text-white/85 transition-all hover:border-gold/60 hover:text-white sm:px-3.5 sm:py-1.5 sm:text-xs md:text-sm"
-                  }
-                >
-                  {isMainPractice && (
-                    <MapPin className="hidden h-3.5 w-3.5 shrink-0 text-gold md:inline-block" />
-                  )}
-                  <span>Dentist near {a}</span>
-                  {isMainPractice && (
-                    <span className="hidden rounded-full bg-gold/25 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-gold md:inline-block">
-                      Practice
-                    </span>
-                  )}
-                </motion.li>
-              );
-            })}
+            {areas.map((a, i) => (
+              <motion.li
+                key={a}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.35, delay: i * 0.02, ease: EASE_OUT }}
+                className="inline-flex items-center rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] text-white/85 transition-all hover:border-gold/60 hover:text-white sm:px-3.5 sm:py-1.5 sm:text-xs md:text-sm"
+              >
+                <span>Dentist near {a}</span>
+              </motion.li>
+            ))}
           </motion.ul>
         </div>
       </section>
 
       {/* Practices */}
       <section id="practices" className="mx-auto max-w-6xl scroll-mt-24 px-5 py-16 md:py-24">
-        <SectionHeading badge="Practices" title="Find your nearest KAA practice" />
-        <div className="mt-8 grid gap-6 md:grid-cols-2">
+        <SectionHeading
+          badge="Practices"
+          title="Find your nearest KAA practice"
+          subtitle="Modern, fully equipped practices in Mountain Ash and Rhymney providing emergency appointments."
+        />
+        <div className="mt-10 grid gap-8 md:grid-cols-2">
           {[
-            { name: "Mountain Ash", area: "Mountain Ash, Rhondda Cynon Taf" },
-            { name: "Rhymney", area: "Rhymney, Caerphilly" },
+            {
+              name: "Mountain Ash",
+              area: "Mountain Ash, Rhondda Cynon Taf",
+              postcode: "CF45 3HB",
+              phone: "01443 474 441",
+              tel: "tel:01443474441",
+              hours: "Monday to Saturday: 9AM – 5PM",
+              mapUrl: "https://www.google.com/maps/search/KAA+Dentals+Mountain+Ash",
+              image: bg1Img,
+            },
+            {
+              name: "Rhymney",
+              area: "Rhymney, Caerphilly",
+              postcode: "NP22 5PW",
+              phone: "01685 840 700",
+              tel: "tel:01685840700",
+              hours: "Monday to Saturday: 9AM – 5PM",
+              mapUrl: "https://www.google.com/maps/search/KAA+Dentals+Rhymney",
+              image: ke4Img,
+            },
           ].map((p, idx) => (
             <motion.div
               key={p.name}
@@ -1295,48 +1212,124 @@ function EmergencyPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.55, delay: idx * 0.12, ease: EASE_OUT }}
-              className="rounded-2xl border border-border bg-card p-6 transition-all hover:border-gold hover:shadow-md"
+              className="group flex flex-col justify-between overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-all hover:border-gold hover:shadow-lg"
             >
-              <h3 className="text-xl">{p.name}</h3>
-              <p className="mt-2 flex items-start gap-2 text-sm text-muted-foreground">
-                <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
-                {p.area}
-              </p>
-              <a
-                href={`https://www.google.com/maps/search/KAA+Dentals+${p.name}`}
-                target="_blank"
-                rel="noreferrer"
-                className={`${CTA_BASE} mt-5 border border-gold/60 px-6 py-3 hover:bg-gold/15`}
-              >
-                Get directions
-              </a>
+              <div>
+                {/* Location Image Header */}
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-secondary">
+                  <img
+                    src={p.image}
+                    alt={`${p.name} Practice`}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute top-4 left-4">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-navy-deep/90 px-3 py-1 text-xs font-semibold text-white shadow-md backdrop-blur-sm">
+                      <span className="h-2 w-2 rounded-full bg-gold" />
+                      Emergency Practice
+                    </span>
+                  </div>
+                  <div className="absolute bottom-4 left-5 right-5 flex items-end justify-between">
+                    <div>
+                      <p className="text-xs font-medium uppercase tracking-wider text-gold-soft">
+                        KAA Dental Care
+                      </p>
+                      <h3 className="font-display text-2xl font-bold tracking-tight text-white drop-shadow-sm">
+                        {p.name}
+                      </h3>
+                    </div>
+                    <span className="rounded-lg bg-white/20 px-2.5 py-1 text-xs font-semibold text-white backdrop-blur-md">
+                      {p.postcode}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Location Details */}
+                <div className="p-6 space-y-3.5 text-sm">
+                  <div className="flex items-start gap-3 text-muted-foreground">
+                    <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
+                    <span className="text-foreground/90">{p.area}</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-muted-foreground">
+                    <Clock className="h-4 w-4 shrink-0 text-gold" />
+                    <span>{p.hours}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Phone className="h-4 w-4 shrink-0 text-gold" />
+                    <a
+                      href={p.tel}
+                      className="font-bold text-foreground transition-colors hover:text-gold"
+                    >
+                      {p.phone}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-3 border-t border-border/70 p-6 pt-4">
+                <a
+                  href={p.mapUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`${CTA_BASE} flex-1 border border-gold/60 bg-transparent px-5 py-3 text-foreground transition-all hover:bg-gold/15`}
+                >
+                  <MapPin className="h-4 w-4 text-gold" />
+                  <span>Get directions</span>
+                </a>
+                <a
+                  href={p.tel}
+                  className={`${CTA_BASE} flex-1 bg-primary px-5 py-3 text-primary-foreground hover:bg-primary/90`}
+                >
+                  <Phone className="h-4 w-4" />
+                  <span>Call practice</span>
+                </a>
+              </div>
             </motion.div>
           ))}
         </div>
       </section>
 
-      <footer className="hidden border-t border-border bg-card md:block">
-        <div className="mx-auto flex max-w-6xl flex-col items-start gap-4 px-5 py-10 sm:flex-row sm:items-center sm:justify-between">
-          <img src={logoImg} alt="KAA Dentals" className="h-9 w-auto object-contain" />
-          <div className="flex flex-wrap items-center gap-3">
-            <a
-              href={WHATSAPP}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-cta bg-whatsapp px-5 py-3.5 text-sm font-medium text-whatsapp-foreground shadow-sm transition hover:opacity-90"
-            >
-              <img
-                src={WHATSAPP_ICON}
-                alt="WhatsApp"
-                className="h-4 w-4 brightness-0 invert"
-                referrerPolicy="no-referrer"
-              />
-              WhatsApp
-            </a>
-            <CallButton />
-          </div>
+      {/* Footer CTA Section */}
+      <section className="surface-navy relative overflow-hidden border-t border-gold/30">
+        <div className="mx-auto max-w-5xl px-5 py-16 text-center md:py-20">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5, ease: EASE_OUT }}
+            className="flex flex-col items-center"
+          >
+            <Badge light>Immediate Relief</Badge>
+
+            <h2 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl leading-tight">
+              Don't Keep Suffering With Toothache
+            </h2>
+
+            <p className="mt-3 text-lg font-semibold text-gold-soft sm:text-xl md:text-2xl">
+              Get Emergency Dental Care From £50
+            </p>
+
+            <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-300 sm:text-base">
+              Same-day emergency dental appointments when available across our Mountain Ash and
+              Rhymney practices.
+            </p>
+
+            {/* CTAs */}
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+              <a
+                href="#request"
+                className={`${CTA_BASE} bg-gold text-primary font-bold tracking-wide shadow-[var(--shadow-soft)] hover:bg-gold/90 hover:-translate-y-0.5 active:scale-[0.99] px-8 py-4 text-sm sm:text-base`}
+              >
+                Book Emergency Appointment
+              </a>
+
+              <CallButton className="border border-white/25 bg-white/10 text-white font-semibold backdrop-blur-sm transition-all hover:bg-white/20 hover:-translate-y-0.5 active:scale-[0.99] px-7 py-4 text-sm sm:text-base shadow-none" />
+            </div>
+          </motion.div>
         </div>
-      </footer>
+      </section>
 
       {/* Mobile sticky action bar */}
       <nav
