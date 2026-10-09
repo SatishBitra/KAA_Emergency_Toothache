@@ -45,6 +45,7 @@ import {
 import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { motion } from "motion/react";
+import { cn } from "@/lib/utils";
 
 const EASE_OUT = [0.22, 1, 0.36, 1] as const;
 
@@ -173,7 +174,11 @@ function CallButton({ className = "" }: { className?: string }) {
   return (
     <a
       href={TEL}
-      className={`${CTA_BASE} bg-gold text-primary shadow-[var(--shadow-soft)] hover:-translate-y-0.5 ${className}`}
+      className={cn(
+        CTA_BASE,
+        "bg-gold text-primary shadow-[var(--shadow-soft)] hover:-translate-y-0.5",
+        className,
+      )}
     >
       <Phone className="h-4 w-4" /> Call us now
     </a>
@@ -184,21 +189,35 @@ function BookButton({ className = "" }: { className?: string }) {
   return (
     <a
       href="#request"
-      className={`${CTA_BASE} bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md hover:-translate-y-0.5 active:scale-[0.99] ${className}`}
+      className={cn(
+        CTA_BASE,
+        "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md hover:-translate-y-0.5 active:scale-[0.99]",
+        className,
+      )}
     >
       Book an appointment
     </a>
   );
 }
 
-function Badge({ children, light = false }: { children: ReactNode; light?: boolean }) {
+function Badge({
+  children,
+  light = false,
+  className = "",
+}: {
+  children: ReactNode;
+  light?: boolean;
+  className?: string;
+}) {
   return (
     <span
-      className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1 text-xs font-medium tracking-[0.12em] uppercase ${
+      className={cn(
+        "inline-flex items-center gap-2 rounded-full border px-3.5 py-1 text-xs font-medium tracking-[0.12em] uppercase",
         light
           ? "border-gold/40 bg-primary-foreground/5 text-gold-soft"
-          : "border-gold/40 bg-gold/10 text-primary"
-      }`}
+          : "border-gold/40 bg-gold/10 text-primary",
+        className,
+      )}
     >
       <span className="h-1.5 w-1.5 rounded-full bg-gold" />
       {children}
@@ -431,29 +450,33 @@ function EmergencyPage() {
 
       {/* Hero */}
       <section id="hero" className="surface-navy relative overflow-hidden">
-        <div className="mx-auto grid max-w-6xl items-start gap-10 px-5 py-14 sm:py-16 md:grid-cols-[1.15fr_1fr] md:gap-12 md:py-20 lg:py-24">
+        <div className="mx-auto grid max-w-6xl items-start gap-8 sm:gap-10 px-5 py-10 sm:py-14 md:grid-cols-[1.15fr_1fr] md:gap-12 md:py-20 lg:py-24">
           <div className="flex flex-col">
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: EASE_OUT }}
             >
-              <Badge light>Same-Day Urgent Care • Mountain Ash &amp; Rhymney</Badge>
+              <Badge light className="text-[11px] sm:text-xs">
+                Same-Day Urgent Care • Mountain Ash &amp; Rhymney
+              </Badge>
             </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.08, ease: EASE_OUT }}
-              className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.12]"
+              className="mt-3.5 sm:mt-4 text-[1.65rem] xs:text-[1.85rem] sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold tracking-tight text-white leading-[1.18] sm:leading-[1.12]"
             >
               Severe Toothache?{" "}
-              <span className="text-gradient-gold block sm:inline">Get Help Today</span>
+              <span className="text-gradient-gold block sm:inline mt-0.5 sm:mt-0">
+                Get Help Today
+              </span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.14, ease: EASE_OUT }}
-              className="mt-4 text-lg font-semibold text-gold-soft md:text-xl"
+              className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl font-semibold text-gold-soft leading-snug"
             >
               Emergency toothache treatment from KAA Dentals.
             </motion.p>
@@ -461,7 +484,7 @@ function EmergencyPage() {
               initial={{ opacity: 0, y: 14 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: 0.18, ease: EASE_OUT }}
-              className="mt-2 text-base leading-relaxed text-slate-200/90 md:text-lg"
+              className="mt-2 text-sm sm:text-base md:text-lg leading-relaxed text-slate-200/90"
             >
               Get your tooth checked, find the cause of your pain and understand your treatment
               options.
@@ -472,52 +495,52 @@ function EmergencyPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.22, ease: EASE_OUT }}
-              className="mt-7 rounded-2xl border border-gold/30 bg-white/[0.06] p-5.5 backdrop-blur-md sm:p-6"
+              className="mt-5 sm:mt-7 rounded-2xl border border-gold/30 bg-white/[0.06] p-4 sm:p-6 backdrop-blur-md"
             >
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/15 pb-4">
-                <h2 className="text-base font-semibold tracking-wide text-white sm:text-lg">
+              <div className="flex items-center justify-between gap-2 border-b border-white/15 pb-3 sm:pb-4">
+                <h2 className="text-sm sm:text-base md:text-lg font-semibold tracking-wide text-white">
                   Emergency Appointments From £50
                 </h2>
-                <span className="rounded-full bg-gold/20 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-gold">
+                <span className="shrink-0 rounded-full bg-gold/20 px-2.5 py-0.5 sm:px-3 sm:py-1 text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-gold">
                   Fixed Assessment
                 </span>
               </div>
 
-              <ul className="mt-4 space-y-2.5 text-sm sm:text-base text-slate-100">
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
-                    <Check className="h-3.5 w-3.5 stroke-[2.5]" />
+              <ul className="mt-3.5 sm:mt-4 space-y-2 sm:space-y-2.5 text-xs sm:text-sm md:text-base text-slate-100">
+                <li className="flex items-start gap-2.5 sm:gap-3">
+                  <span className="mt-0.5 grid h-4.5 w-4.5 sm:h-5 sm:w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
+                    <Check className="h-3 w-3 sm:h-3.5 sm:w-3.5 stroke-[2.5]" />
                   </span>
                   <span>Dental examination</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
-                    <Check className="h-3.5 w-3.5 stroke-[2.5]" />
+                <li className="flex items-start gap-2.5 sm:gap-3">
+                  <span className="mt-0.5 grid h-4.5 w-4.5 sm:h-5 sm:w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
+                    <Check className="h-3 w-3 sm:h-3.5 sm:w-3.5 stroke-[2.5]" />
                   </span>
                   <span>Assessment of your tooth pain</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
-                    <Check className="h-3.5 w-3.5 stroke-[2.5]" />
+                <li className="flex items-start gap-2.5 sm:gap-3">
+                  <span className="mt-0.5 grid h-4.5 w-4.5 sm:h-5 sm:w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
+                    <Check className="h-3 w-3 sm:h-3.5 sm:w-3.5 stroke-[2.5]" />
                   </span>
                   <span>X-ray if required</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
+                <li className="flex items-start gap-2.5 sm:gap-3">
+                  <span className="mt-0.5 grid h-4.5 w-4.5 sm:h-5 sm:w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
                     <Check className="h-3.5 w-3.5 stroke-[2.5]" />
                   </span>
                   <span>Antibiotics where clinically appropriate</span>
                 </li>
-                <li className="flex items-start gap-3">
-                  <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
+                <li className="flex items-start gap-2.5 sm:gap-3">
+                  <span className="mt-0.5 grid h-4.5 w-4.5 sm:h-5 sm:w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
                     <Check className="h-3.5 w-3.5 stroke-[2.5]" />
                   </span>
                   <span>Advice on the next step</span>
                 </li>
               </ul>
 
-              <div className="mt-4.5 border-t border-white/15 pt-3.5">
-                <p className="text-xs leading-relaxed text-slate-200/85 sm:text-sm">
+              <div className="mt-3.5 sm:mt-4 border-t border-white/15 pt-3 sm:pt-3.5">
+                <p className="text-[11px] sm:text-xs md:text-sm leading-relaxed text-slate-200/85">
                   If you need additional treatment, we'll explain your options and the cost before
                   proceeding.
                 </p>
@@ -529,32 +552,34 @@ function EmergencyPage() {
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.15, ease: EASE_OUT }}
-            className="flex flex-col justify-between rounded-2xl border border-gold/40 bg-card p-6 sm:p-7 md:p-8 text-card-foreground shadow-[var(--shadow-soft)]"
+            className="flex flex-col justify-between rounded-2xl border border-gold/40 bg-card p-4.5 sm:p-7 md:p-8 text-card-foreground shadow-[var(--shadow-soft)]"
           >
             <div>
-              <div className="flex items-start justify-between gap-4 border-b border-border/70 pb-5">
+              <div className="flex items-start justify-between gap-3 border-b border-border/70 pb-4 sm:pb-5">
                 <div>
-                  <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/15 px-3 py-1 text-xs font-semibold text-primary">
-                    <Clock className="h-3.5 w-3.5 text-gold" />
+                  <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/15 px-2.5 py-0.5 sm:px-3 sm:py-1 text-[11px] sm:text-xs font-semibold text-primary">
+                    <Clock className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-gold" />
                     Emergency Care Available
                   </span>
-                  <h3 className="mt-2.5 text-xl font-bold leading-tight text-foreground sm:text-2xl">
+                  <h3 className="mt-2 sm:mt-2.5 text-base sm:text-xl md:text-2xl font-bold leading-snug sm:leading-tight text-foreground">
                     Book Your Emergency Appointment From £50
                   </h3>
                 </div>
-                <div className="shrink-0 text-right">
-                  <span className="block text-xs font-medium text-muted-foreground">From</span>
-                  <span className="font-display text-4xl font-extrabold text-primary leading-none sm:text-5xl">
+                <div className="shrink-0 text-right pl-1">
+                  <span className="block text-[11px] sm:text-xs font-medium text-muted-foreground">
+                    From
+                  </span>
+                  <span className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary leading-none">
                     £50
                   </span>
                 </div>
               </div>
 
               {/* Primary Booking CTA */}
-              <div className="mt-6">
+              <div className="mt-4 sm:mt-6">
                 <a
                   href="#request"
-                  className={`${CTA_BASE} w-full bg-gold text-primary text-sm sm:text-base font-bold tracking-wide shadow-[var(--shadow-soft)] hover:bg-gold/90 hover:-translate-y-0.5 active:scale-[0.99]`}
+                  className={`${CTA_BASE} w-full justify-center bg-gold text-primary text-sm sm:text-base font-bold tracking-wide shadow-[var(--shadow-soft)] hover:bg-gold/90 hover:-translate-y-0.5 active:scale-[0.99] py-3.5 sm:py-4`}
                 >
                   Book Emergency Appointment
                 </a>
@@ -564,20 +589,20 @@ function EmergencyPage() {
             {/* Direct Practice Contact Numbers */}
             <div
               id="hero-call-practices"
-              className="mt-8 border-t border-border/70 pt-6 scroll-mt-28"
+              className="mt-6 sm:mt-8 border-t border-border/70 pt-4 sm:pt-6 scroll-mt-28"
             >
               <div className="flex items-center justify-between">
-                <p className="text-xs font-bold tracking-[0.12em] uppercase text-muted-foreground">
+                <p className="text-[11px] sm:text-xs font-bold tracking-[0.1em] sm:tracking-[0.12em] uppercase text-muted-foreground">
                   Call our practices directly:
                 </p>
-                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-emerald-600 dark:text-emerald-400">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="inline-flex items-center gap-1 text-[11px] sm:text-xs font-medium text-emerald-600 dark:text-emerald-400">
+                  <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-emerald-500 animate-pulse" />
                   Direct Lines
                 </span>
               </div>
 
               <div
-                className={`mt-3 flex flex-col gap-2 rounded-2xl p-2 transition-all duration-300 ${
+                className={`mt-2.5 sm:mt-3 flex flex-col gap-1.5 sm:gap-2 rounded-xl sm:rounded-2xl p-1.5 sm:p-2 transition-all duration-300 ${
                   isCallingPracticesBlinking
                     ? "border-2 border-gold animate-gold-border-blink bg-gold/10 shadow-[0_0_16px_rgba(200,160,80,0.35)]"
                     : "border border-border/60 bg-secondary/35"
@@ -586,14 +611,14 @@ function EmergencyPage() {
                 <a
                   href="tel:01443474441"
                   onClick={() => setIsCallingPracticesBlinking(false)}
-                  className="group flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium transition-colors hover:bg-gold/15"
+                  className="group flex items-center justify-between rounded-lg sm:rounded-xl px-2.5 py-2 sm:px-3 sm:py-2.5 text-xs sm:text-sm font-medium transition-colors hover:bg-gold/15"
                 >
-                  <span className="flex items-center gap-2.5">
-                    <MapPin className="h-4 w-4 shrink-0 text-gold transition-transform group-hover:scale-110" />
+                  <span className="flex items-center gap-2 sm:gap-2.5">
+                    <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 text-gold transition-transform group-hover:scale-110" />
                     <span className="font-semibold text-foreground">Mountain Ash</span>
                   </span>
-                  <span className="flex items-center gap-1.5 font-bold tracking-tight text-primary transition-colors group-hover:text-gold">
-                    <Phone className="h-3.5 w-3.5 shrink-0 text-gold" />
+                  <span className="flex items-center gap-1 sm:gap-1.5 font-bold tracking-tight text-primary transition-colors group-hover:text-gold">
+                    <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0 text-gold" />
                     <span className="tabular-nums">01443 474 441</span>
                   </span>
                 </a>
@@ -601,23 +626,23 @@ function EmergencyPage() {
                 <a
                   href="tel:01685840700"
                   onClick={() => setIsCallingPracticesBlinking(false)}
-                  className="group flex items-center justify-between rounded-xl px-3 py-2.5 text-sm font-medium transition-colors hover:bg-gold/15"
+                  className="group flex items-center justify-between rounded-lg sm:rounded-xl px-2.5 py-2 sm:px-3 sm:py-2.5 text-xs sm:text-sm font-medium transition-colors hover:bg-gold/15"
                 >
-                  <span className="flex items-center gap-2.5">
-                    <MapPin className="h-4 w-4 shrink-0 text-gold transition-transform group-hover:scale-110" />
+                  <span className="flex items-center gap-2 sm:gap-2.5">
+                    <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 text-gold transition-transform group-hover:scale-110" />
                     <span className="font-semibold text-foreground">Rhymney</span>
                   </span>
-                  <span className="flex items-center gap-1.5 font-bold tracking-tight text-primary transition-colors group-hover:text-gold">
-                    <Phone className="h-3.5 w-3.5 shrink-0 text-gold" />
+                  <span className="flex items-center gap-1 sm:gap-1.5 font-bold tracking-tight text-primary transition-colors group-hover:text-gold">
+                    <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0 text-gold" />
                     <span className="tabular-nums">01685 840 700</span>
                   </span>
                 </a>
               </div>
 
               {/* Practice Hours */}
-              <div className="mt-3.5 flex items-center justify-between rounded-xl bg-secondary/30 px-3.5 py-2.5 text-xs sm:text-sm font-medium">
-                <span className="flex items-center gap-2 text-muted-foreground">
-                  <Clock className="h-4 w-4 text-gold shrink-0" />
+              <div className="mt-2.5 sm:mt-3.5 flex items-center justify-between rounded-xl bg-secondary/30 px-3 py-2 sm:px-3.5 sm:py-2.5 text-xs sm:text-sm font-medium">
+                <span className="flex items-center gap-1.5 sm:gap-2 text-muted-foreground">
+                  <Clock className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gold shrink-0" />
                   <span>Monday to Saturday</span>
                 </span>
                 <span className="font-bold text-foreground">9AM – 5PM</span>
@@ -1293,39 +1318,39 @@ function EmergencyPage() {
 
       {/* Footer CTA Section */}
       <section className="surface-navy relative overflow-hidden border-t border-gold/30">
-        <div className="mx-auto max-w-5xl px-5 py-16 text-center md:py-20">
+        <div className="mx-auto max-w-5xl px-5 py-12 sm:py-16 md:py-20">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
             transition={{ duration: 0.5, ease: EASE_OUT }}
-            className="flex flex-col items-center"
+            className="flex flex-col items-start md:items-center text-left md:text-center"
           >
             <Badge light>Immediate Relief</Badge>
 
-            <h2 className="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl leading-tight">
+            <h2 className="mt-4 sm:mt-5 text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white leading-tight">
               Don't Keep Suffering With Toothache
             </h2>
 
-            <p className="mt-3 text-lg font-semibold text-gold-soft sm:text-xl md:text-2xl">
+            <p className="mt-2.5 sm:mt-3 text-base sm:text-xl md:text-2xl font-semibold text-gold-soft">
               Get Emergency Dental Care From £50
             </p>
 
-            <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-300 sm:text-base">
+            <p className="mt-2.5 sm:mt-3 max-w-xl text-sm sm:text-base leading-relaxed text-slate-300">
               Same-day emergency dental appointments when available across our Mountain Ash and
               Rhymney practices.
             </p>
 
             {/* CTAs */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-start md:justify-center gap-3.5 sm:gap-4 w-full sm:w-auto">
               <a
                 href="#request"
-                className={`${CTA_BASE} bg-gold text-primary font-bold tracking-wide shadow-[var(--shadow-soft)] hover:bg-gold/90 hover:-translate-y-0.5 active:scale-[0.99] px-8 py-4 text-sm sm:text-base`}
+                className={`${CTA_BASE} w-full sm:w-auto justify-center bg-gold text-primary font-bold tracking-wide shadow-[var(--shadow-soft)] hover:bg-gold/90 hover:-translate-y-0.5 active:scale-[0.99] px-7 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base`}
               >
                 Book Emergency Appointment
               </a>
 
-              <CallButton className="border border-white/25 bg-white/10 text-white font-semibold backdrop-blur-sm transition-all hover:bg-white/20 hover:-translate-y-0.5 active:scale-[0.99] px-7 py-4 text-sm sm:text-base shadow-none" />
+              <CallButton className="w-full sm:w-auto justify-center border border-white/25 bg-white/10 text-white font-semibold backdrop-blur-sm transition-all hover:bg-white/20 hover:-translate-y-0.5 active:scale-[0.99] px-6 sm:px-7 py-3.5 sm:py-4 text-sm sm:text-base shadow-none" />
             </div>
           </motion.div>
         </div>
