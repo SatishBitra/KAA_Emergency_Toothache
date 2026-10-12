@@ -634,7 +634,7 @@ function BrokenToothPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.22, ease: EASE_OUT }}
-              className="mt-6 sm:mt-7 md:mt-6 lg:mt-8 rounded-2xl border border-gold/30 bg-white/[0.06] p-4 sm:p-6 backdrop-blur-md flex flex-col justify-between"
+              className="mt-3 sm:mt-4 md:mt-0 rounded-2xl border border-gold/30 bg-white/[0.06] p-4 sm:p-6 backdrop-blur-md flex flex-col justify-between"
             >
               <div>
                 <div className="border-b border-white/15 pb-2.5 sm:pb-4">
@@ -725,25 +725,6 @@ function BrokenToothPage() {
                     <span className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-primary leading-none">
                       £50
                     </span>
-                  </div>
-                </div>
-
-                <div className="mt-3.5 sm:mt-4 grid grid-cols-2 gap-2 text-xs sm:text-sm">
-                  <div className="flex items-center gap-1.5 sm:gap-2 text-foreground font-medium">
-                    <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gold shrink-0 stroke-[2.5]" />
-                    <span>Same-day relief</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 sm:gap-2 text-foreground font-medium">
-                    <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gold shrink-0 stroke-[2.5]" />
-                    <span>X-rays included</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 sm:gap-2 text-foreground font-medium">
-                    <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gold shrink-0 stroke-[2.5]" />
-                    <span>Gentle dentists</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 sm:gap-2 text-foreground font-medium">
-                    <Check className="h-3.5 w-3.5 sm:h-4 sm:w-4 text-gold shrink-0 stroke-[2.5]" />
-                    <span>Clear pricing</span>
                   </div>
                 </div>
 
