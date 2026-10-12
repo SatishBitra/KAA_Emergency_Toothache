@@ -18,10 +18,10 @@ import {
 } from "lucide-react";
 import logoImg from "@/assets/KH-scaled-1-2048x588.png.webp";
 import ke1Img from "@/assets/ke1.png";
-import ke2Img from "@/assets/ke2.png";
-import ke3Img from "@/assets/ke3.png";
-import ke4Img from "@/assets/ke4.png";
-import ke5Img from "@/assets/ke5.png";
+import tcaImg from "@/assets/tca.png";
+import ec2Img from "@/assets/ec2.png";
+import ec3Img from "@/assets/ec3.png";
+import ec4Img from "@/assets/ec4.png";
 import whatsappWhiteIcon from "@/assets/whatsapp-white.svg";
 import whatsappGreenIcon from "@/assets/whatsapp-green.svg";
 import {
@@ -102,31 +102,19 @@ const problems = [
     title: "Tooth decay",
     body: "Pain caused by deep cavities, untreated decay reaching sensitive inner nerves.",
     cta: "Tooth decay treatment",
-    image: ke2Img,
+    image: ec4Img,
   },
   {
     title: "Dental infection",
     body: "Bacterial infection, swelling around the gumline or a painful dental abscess.",
     cta: "Dental infection treatment",
-    image: ke3Img,
-  },
-  {
-    title: "Broken or cracked teeth",
-    body: "Fractured, chipped or cracked teeth causing severe sensitivity or sharp edges.",
-    cta: "Broken tooth treatment",
-    image: ke4Img,
-  },
-  {
-    title: "Lost fillings or crowns",
-    body: "Dislodged, lost or broken fillings and crowns leaving exposed, tender teeth.",
-    cta: "Lost filling treatment",
-    image: ke1Img,
+    image: ec3Img,
   },
   {
     title: "Damaged or infected teeth",
     body: "Compromised or damaged teeth needing immediate pain stabilization or extraction.",
     cta: "Damaged tooth treatment",
-    image: ke5Img,
+    image: ec2Img,
   },
 ];
 
@@ -702,7 +690,7 @@ function EmergencyPage() {
           >
             <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-secondary/60 sm:aspect-[16/11]">
               <img
-                src={ke2Img}
+                src={tcaImg}
                 alt="Severe toothache emergency dental care"
                 className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
                 loading="lazy"
@@ -1128,9 +1116,9 @@ function EmergencyPage() {
             title="Emergency Toothache Treatment"
             subtitle="We can help with tooth pain caused by:"
           />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {problems.map((p, idx) => {
-              const colDelay = (idx % 3) * 0.1;
+              const colDelay = (idx % 4) * 0.1;
               return (
                 <motion.div
                   key={p.title}
