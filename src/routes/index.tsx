@@ -477,7 +477,7 @@ function EmergencyPage() {
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.08, ease: EASE_OUT }}
-                className="mt-3.5 sm:mt-4 text-[1.65rem] xs:text-[1.85rem] sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold tracking-tight text-white leading-[1.18] sm:leading-[1.12]"
+                className="mt-3.5 sm:mt-4 text-[1.95rem] xs:text-[2.15rem] sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold tracking-tight text-white leading-[1.15] sm:leading-[1.12]"
               >
                 Severe Toothache?{" "}
                 <span className="text-gradient-gold block sm:inline md:block mt-0.5 sm:mt-0 md:mt-1">
@@ -1275,12 +1275,6 @@ function EmergencyPage() {
                 {/* Header info without image */}
                 <div className="flex items-start justify-between gap-4 border-b border-border/70 pb-5">
                   <div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/10 border border-gold/30 px-2.5 py-0.5 text-xs font-semibold text-primary">
-                        <span className="h-1.5 w-1.5 rounded-full bg-gold" />
-                        Emergency Practice
-                      </span>
-                    </div>
                     <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
                       KAA Dental Care
                     </p>
@@ -1324,7 +1318,7 @@ function EmergencyPage() {
                   className={`${CTA_BASE} flex-1 border border-gold/60 bg-transparent px-5 py-3 text-foreground transition-all hover:bg-gold/15`}
                 >
                   <MapPin className="h-4 w-4 text-gold" />
-                  <span>Get directions</span>
+                  <span>Directions</span>
                 </a>
                 <a
                   href={p.tel}
