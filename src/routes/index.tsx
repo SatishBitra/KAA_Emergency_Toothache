@@ -255,7 +255,7 @@ function SectionHeading({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.55, delay: 0.16, ease: EASE_OUT }}
-          className={`mt-3 max-w-2xl ${light ? "opacity-90" : "text-muted-foreground"}`}
+          className={`mt-3 max-w-2xl font-normal ${light ? "opacity-90" : "text-muted-foreground"}`}
         >
           {subtitle}
         </motion.p>
@@ -365,7 +365,7 @@ function EmergencyPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background pb-20 font-medium text-foreground md:pb-0">
+    <div className="min-h-screen bg-background pb-20 font-normal text-foreground md:pb-0">
       <Toaster />
 
       <header className="sticky top-0 z-40 border-b border-border bg-background/85 backdrop-blur">
@@ -496,7 +496,7 @@ function EmergencyPage() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.18, ease: EASE_OUT }}
-                className="mt-2 text-sm sm:text-base md:text-lg leading-relaxed text-slate-200/90"
+                className="mt-2 text-sm sm:text-base md:text-lg font-normal leading-relaxed text-slate-200/90"
               >
                 Get your tooth checked, find the cause of your pain and understand your treatment
                 options.
@@ -552,7 +552,7 @@ function EmergencyPage() {
               </div>
 
               <div className="mt-3.5 sm:mt-4 border-t border-white/15 pt-3 sm:pt-3.5">
-                <p className="text-[11px] sm:text-xs md:text-sm leading-relaxed text-slate-200/85">
+                <p className="text-[11px] sm:text-xs md:text-sm font-normal leading-relaxed text-slate-200/85">
                   If you need additional treatment, we'll explain your options and the cost before
                   proceeding.
                 </p>
@@ -586,7 +586,7 @@ function EmergencyPage() {
                     <h3 className="text-base sm:text-lg md:text-xl font-bold leading-snug sm:leading-tight text-foreground">
                       Book Your Emergency Appointment
                     </h3>
-                    <p className="mt-0.5 text-xs sm:text-sm text-muted-foreground">
+                    <p className="mt-0.5 text-xs sm:text-sm font-normal text-muted-foreground">
                       Fast diagnosis &amp; urgent pain relief
                     </p>
                   </div>
@@ -712,11 +712,11 @@ function EmergencyPage() {
               Toothache Getting Worse? We Can Help.
             </h2>
 
-            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+            <p className="mt-3 text-base font-normal leading-relaxed text-muted-foreground">
               Severe tooth pain can make eating, sleeping and everyday life difficult.
             </p>
 
-            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
+            <p className="mt-3 text-base font-normal leading-relaxed text-muted-foreground">
               Our emergency dentists can assess your toothache and provide the right treatment to
               help deal with the problem.
             </p>
@@ -766,7 +766,7 @@ function EmergencyPage() {
               <h2 className="mt-4 max-w-3xl text-2xl leading-tight text-white md:text-3xl">
                 Request an emergency appointment
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-white/85 md:text-lg">
+              <p className="mt-4 text-base font-normal leading-relaxed text-white/85 md:text-lg">
                 Tell us what's wrong and we'll contact you promptly about the next available
                 appointment.
               </p>
@@ -997,7 +997,7 @@ function EmergencyPage() {
         <DialogContent className="max-w-md">
           <DialogHeader>
             <DialogTitle>KAA Dentals Privacy Policy</DialogTitle>
-            <DialogDescription className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            <DialogDescription className="mt-2 text-sm font-normal leading-relaxed text-muted-foreground">
               Your personal details (name, telephone number, email, and dental symptoms) are
               collected strictly to arrange and coordinate your emergency appointment at our
               Mountain Ash or Rhymney practices. In compliance with UK GDPR and NHS confidentiality
@@ -1063,7 +1063,7 @@ function EmergencyPage() {
               <HeartHandshake className="h-6 w-6 text-gold" />
               <h3 className="mt-3 text-lg">If you need treatment</h3>
             </div>
-            <p className="mt-6 text-sm text-muted-foreground">
+            <p className="mt-6 text-sm font-normal text-muted-foreground">
               We'll explain what needs to be done and the cost{" "}
               <span className="text-foreground">before treatment starts.</span>
             </p>
@@ -1091,7 +1091,7 @@ function EmergencyPage() {
                 </div>
               ))}
             </dl>
-            <p className="mt-3 text-xs italic text-muted-foreground">
+            <p className="mt-3 text-xs italic font-normal text-muted-foreground">
               Prices are starting prices and may vary depending on the treatment required.
             </p>
           </motion.div>
@@ -1140,7 +1140,9 @@ function EmergencyPage() {
                     </div>
 
                     <h3 className="text-lg font-medium text-foreground">{p.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.body}</p>
+                    <p className="mt-2 text-sm font-normal leading-relaxed text-muted-foreground">
+                      {p.body}
+                    </p>
                   </div>
                   <a
                     href="#request"
@@ -1190,7 +1192,7 @@ function EmergencyPage() {
                   <AccordionTrigger className="text-left text-base font-medium">
                     {f.q}
                   </AccordionTrigger>
-                  <AccordionContent className="leading-relaxed text-muted-foreground">
+                  <AccordionContent className="leading-relaxed font-normal text-muted-foreground">
                     {f.a}
                   </AccordionContent>
                 </AccordionItem>
@@ -1275,7 +1277,7 @@ function EmergencyPage() {
                 {/* Header info without image */}
                 <div className="flex items-start justify-between gap-4 border-b border-border/70 pb-5">
                   <div>
-                    <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                    <p className="text-xs font-normal uppercase tracking-wider text-muted-foreground">
                       KAA Dental Care
                     </p>
                     <h3 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-foreground mt-0.5">
@@ -1353,7 +1355,7 @@ function EmergencyPage() {
               Get Emergency Dental Care From £50
             </p>
 
-            <p className="mt-2.5 sm:mt-3 max-w-xl text-sm sm:text-base leading-relaxed text-slate-300">
+            <p className="mt-2.5 sm:mt-3 max-w-xl text-sm sm:text-base font-normal leading-relaxed text-slate-300">
               Same-day emergency dental appointments when available across our Mountain Ash and
               Rhymney practices.
             </p>
