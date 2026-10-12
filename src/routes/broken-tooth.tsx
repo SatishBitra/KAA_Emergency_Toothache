@@ -19,11 +19,7 @@ import {
 } from "lucide-react";
 import logoImg from "@/assets/KH-scaled-1-2048x588.png.webp";
 import bctHeroImg from "@/assets/bct-hero.png";
-import ke1Img from "@/assets/ke1.png";
 import tcaImg from "@/assets/tca.png";
-import ec2Img from "@/assets/ec2.png";
-import ec3Img from "@/assets/ec3.png";
-import ec4Img from "@/assets/ec4.png";
 import whatsappWhiteIcon from "@/assets/whatsapp-white.svg";
 import whatsappGreenIcon from "@/assets/whatsapp-green.svg";
 import {
@@ -86,37 +82,9 @@ const WHATSAPP_ICON_GREEN = whatsappGreenIcon;
 const navItems = [
   { label: "Overview", href: "#overview" },
   { label: "The process", href: "#process" },
-  { label: "Problems", href: "#problems" },
   { label: "Reviews", href: "#testimonials" },
   { label: "FAQ", href: "#faq" },
   { label: "Practices", href: "#practices" },
-];
-
-const problems = [
-  {
-    title: "Broken or cracked tooth",
-    body: "Damaged enamel or fractures from trauma or biting, exposing sensitive nerves to pain.",
-    cta: "Broken tooth care",
-    image: ec2Img,
-  },
-  {
-    title: "Chipped tooth",
-    body: "Sharp or rough edges causing tongue irritation or pain when chewing and drinking.",
-    cta: "Chipped tooth treatment",
-    image: ke1Img,
-  },
-  {
-    title: "Deep decay & lost fillings",
-    body: "Loss of dental filling or deep decay leaving the inner tooth structure unprotected.",
-    cta: "Tooth repair treatment",
-    image: ec4Img,
-  },
-  {
-    title: "Dental infection & trauma",
-    body: "Bacterial infection or pulp inflammation following severe structural dental damage.",
-    cta: "Urgent dental treatment",
-    image: ec3Img,
-  },
 ];
 
 const testimonials = [
@@ -1272,233 +1240,183 @@ function BrokenToothPage() {
         </motion.div>
       </section>
 
-      {/* Problems */}
-      <section id="problems" className="scroll-mt-24 border-y border-border bg-secondary/40">
+      {/* Testimonials */}
+      <section id="testimonials" className="scroll-mt-24 border-y border-border bg-secondary/40">
         <div className="mx-auto max-w-6xl px-4 sm:px-5 py-8 sm:py-12 md:py-24">
           <SectionHeading
-            badge="Problems we treat"
-            title="Emergency Broken Tooth Treatment"
-            subtitle="We can help with damaged teeth caused by:"
+            badge="Reviews"
+            title="Hear From Our Happy Patients"
+            subtitle="Real stories from local patients who visited KAA Dentals for urgent broken tooth treatment and emergency care."
           />
-          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {problems.map((p, idx) => {
-              const colDelay = (idx % 4) * 0.1;
-              return (
-                <motion.div
-                  key={p.title}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.55, delay: colDelay, ease: EASE_OUT }}
-                  className="group flex flex-col justify-between rounded-2xl border border-border bg-card p-6 transition-all hover:border-gold hover:shadow-md"
-                >
-                  <div>
-                    <div className="relative mb-4 aspect-[16/9] w-full overflow-hidden rounded-xl border border-border/70 bg-secondary transition-colors group-hover:border-gold/50">
-                      <img
-                        src={p.image}
-                        alt={p.title}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                    </div>
 
-                    <h3 className="text-lg font-medium text-foreground">{p.title}</h3>
-                    <p className="mt-2 text-sm font-normal leading-relaxed text-muted-foreground">
-                      {p.body}
-                    </p>
-                  </div>
-                  <a
-                    href="#request"
-                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary transition-colors hover:text-gold"
-                  >
-                    <span>{p.cta}</span>
-                    <ArrowRight className="h-4 w-4 text-gold transition-transform group-hover:translate-x-1" />
-                  </a>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section
-        id="testimonials"
-        className="mx-auto max-w-6xl scroll-mt-24 px-4 sm:px-5 py-8 sm:py-12 md:py-24"
-      >
-        <SectionHeading
-          badge="Reviews"
-          title="Hear From Our Happy Patients"
-          subtitle="Real stories from local patients who visited KAA Dentals for urgent broken tooth treatment and emergency care."
-        />
-
-        {/* Mobile View: Touch Carousel with hand swipe */}
-        <div className="mt-8 md:hidden">
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            setApi={setTestimonialApi}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-3 pb-2">
-              {testimonials.map((t) => (
-                <CarouselItem key={t.name} className="pl-3 basis-[88%] xs:basis-[82%]">
-                  <div className="flex h-full min-h-[310px] flex-col justify-between rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
-                    <div>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-1 text-gold">
-                          {[...Array(t.rating)].map((_, i) => (
-                            <Star key={i} className="h-4 w-4 fill-gold text-gold" />
-                          ))}
-                        </div>
-                        <Quote className="h-5 w-5 text-gold/30 shrink-0" />
-                      </div>
-                      <h4 className="mt-3 font-display text-base font-bold text-foreground">
-                        “{t.headline}”
-                      </h4>
-                      <p className="mt-2 text-sm font-normal leading-relaxed text-muted-foreground italic">
-                        “{t.quote}”
-                      </p>
-                    </div>
-
-                    <div className="mt-6 flex items-center gap-3 border-t border-border/70 pt-4">
-                      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold/15 font-display text-xs font-bold text-primary">
-                        {t.initials}
-                      </div>
+          {/* Mobile View: Touch Carousel with hand swipe */}
+          <div className="mt-8 md:hidden">
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              setApi={setTestimonialApi}
+              className="w-full"
+            >
+              <CarouselContent className="-ml-3 pb-2">
+                {testimonials.map((t) => (
+                  <CarouselItem key={t.name} className="pl-3 basis-[88%] xs:basis-[82%]">
+                    <div className="flex h-full min-h-[310px] flex-col justify-between rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
                       <div>
-                        <h4 className="font-display text-sm font-semibold text-foreground">
-                          {t.name}
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-1 text-gold">
+                            {[...Array(t.rating)].map((_, i) => (
+                              <Star key={i} className="h-4 w-4 fill-gold text-gold" />
+                            ))}
+                          </div>
+                          <Quote className="h-5 w-5 text-gold/30 shrink-0" />
+                        </div>
+                        <h4 className="mt-3 font-display text-base font-bold text-foreground">
+                          “{t.headline}”
                         </h4>
-                        <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
-                          <Check className="h-3 w-3 text-gold" />
-                          <span>Verified Patient</span>
+                        <p className="mt-2 text-sm font-normal leading-relaxed text-muted-foreground italic">
+                          “{t.quote}”
+                        </p>
+                      </div>
+
+                      <div className="mt-6 flex items-center gap-3 border-t border-border/70 pt-4">
+                        <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold/15 font-display text-xs font-bold text-primary">
+                          {t.initials}
+                        </div>
+                        <div>
+                          <h4 className="font-display text-sm font-semibold text-foreground">
+                            {t.name}
+                          </h4>
+                          <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
+                            <Check className="h-3 w-3 text-gold" />
+                            <span>Verified Patient</span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-
-            {/* Mobile swipe controls: interactive dot indicators and prev/next buttons */}
-            <div className="mt-5 flex items-center justify-between px-1">
-              <div className="flex items-center gap-1.5">
-                {testimonials.map((_, i) => (
-                  <button
-                    key={i}
-                    type="button"
-                    aria-label={`Go to slide ${i + 1}`}
-                    onClick={() => testimonialApi?.scrollTo(i)}
-                    className={cn(
-                      "h-2 rounded-full transition-all duration-300",
-                      currentTestimonial === i
-                        ? "w-6 bg-gold"
-                        : "w-2 bg-border hover:bg-muted-foreground/40",
-                    )}
-                  />
+                  </CarouselItem>
                 ))}
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => testimonialApi?.scrollPrev()}
-                  aria-label="Previous testimonial"
-                  className="grid h-8 w-8 place-items-center rounded-full border border-border bg-card text-foreground shadow-xs transition hover:border-gold hover:text-gold active:scale-95"
-                >
-                  <ArrowLeft className="h-4 w-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => testimonialApi?.scrollNext()}
-                  aria-label="Next testimonial"
-                  className="grid h-8 w-8 place-items-center rounded-full border border-border bg-card text-foreground shadow-xs transition hover:border-gold hover:text-gold active:scale-95"
-                >
-                  <ArrowRight className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-          </Carousel>
-        </div>
+              </CarouselContent>
 
-        {/* Desktop View: Grid of reviews with highlight card */}
-        <div className="mt-10 hidden md:grid md:grid-cols-3 gap-6">
-          {testimonials.map((t, idx) => (
+              {/* Mobile swipe controls: interactive dot indicators and prev/next buttons */}
+              <div className="mt-5 flex items-center justify-between px-1">
+                <div className="flex items-center gap-1.5">
+                  {testimonials.map((_, i) => (
+                    <button
+                      key={i}
+                      type="button"
+                      aria-label={`Go to slide ${i + 1}`}
+                      onClick={() => testimonialApi?.scrollTo(i)}
+                      className={cn(
+                        "h-2 rounded-full transition-all duration-300",
+                        currentTestimonial === i
+                          ? "w-6 bg-gold"
+                          : "w-2 bg-border hover:bg-muted-foreground/40",
+                      )}
+                    />
+                  ))}
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => testimonialApi?.scrollPrev()}
+                    aria-label="Previous testimonial"
+                    className="grid h-8 w-8 place-items-center rounded-full border border-border bg-card text-foreground shadow-xs transition hover:border-gold hover:text-gold active:scale-95"
+                  >
+                    <ArrowLeft className="h-4 w-4" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => testimonialApi?.scrollNext()}
+                    aria-label="Next testimonial"
+                    className="grid h-8 w-8 place-items-center rounded-full border border-border bg-card text-foreground shadow-xs transition hover:border-gold hover:text-gold active:scale-95"
+                  >
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
+            </Carousel>
+          </div>
+
+          {/* Desktop View: Grid of reviews with highlight card */}
+          <div className="mt-10 hidden md:grid md:grid-cols-3 gap-6">
+            {testimonials.map((t, idx) => (
+              <motion.div
+                key={t.name}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ duration: 0.5, delay: idx * 0.08, ease: EASE_OUT }}
+                className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-gold/60 hover:shadow-md"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1 text-gold">
+                      {[...Array(t.rating)].map((_, i) => (
+                        <Star key={i} className="h-4 w-4 fill-gold text-gold" />
+                      ))}
+                    </div>
+                    <Quote className="h-6 w-6 text-gold/30 shrink-0" />
+                  </div>
+                  <h4 className="mt-3 font-display text-base font-bold text-foreground">
+                    “{t.headline}”
+                  </h4>
+                  <p className="mt-2 text-sm font-normal leading-relaxed text-muted-foreground italic">
+                    “{t.quote}”
+                  </p>
+                </div>
+
+                <div className="mt-6 flex items-center gap-3 border-t border-border/70 pt-4">
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold/15 font-display text-xs font-bold text-primary">
+                    {t.initials}
+                  </div>
+                  <div>
+                    <h4 className="font-display text-sm font-semibold text-foreground">{t.name}</h4>
+                    <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                      <Check className="h-3.5 w-3.5 text-gold" />
+                      <span>Verified Patient</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+
+            {/* 6th Card: Verified Clinic Trust Summary */}
             <motion.div
-              key={t.name}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.5, delay: idx * 0.08, ease: EASE_OUT }}
-              className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-gold/60 hover:shadow-md"
+              transition={{ duration: 0.5, delay: 5 * 0.08, ease: EASE_OUT }}
+              className="flex flex-col justify-between rounded-2xl border border-gold/40 bg-gradient-to-br from-gold/10 via-card to-card p-6 shadow-sm"
             >
               <div>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1 text-gold">
-                    {[...Array(t.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-gold text-gold" />
-                    ))}
-                  </div>
-                  <Quote className="h-6 w-6 text-gold/30 shrink-0" />
+                <div className="flex items-center gap-1 text-gold mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-gold text-gold" />
+                  ))}
                 </div>
-                <h4 className="mt-3 font-display text-base font-bold text-foreground">
-                  “{t.headline}”
-                </h4>
-                <p className="mt-2 text-sm font-normal leading-relaxed text-muted-foreground italic">
-                  “{t.quote}”
+                <h3 className="font-display text-xl font-bold text-foreground">
+                  Same-Day Emergency Relief
+                </h3>
+                <p className="mt-2 text-sm font-normal leading-relaxed text-muted-foreground">
+                  Prompt emergency appointments across our Mountain Ash and Rhymney practices. We'll
+                  diagnose the cause of pain and explain your options clearly.
                 </p>
               </div>
-
-              <div className="mt-6 flex items-center gap-3 border-t border-border/70 pt-4">
-                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold/15 font-display text-xs font-bold text-primary">
-                  {t.initials}
-                </div>
-                <div>
-                  <h4 className="font-display text-sm font-semibold text-foreground">{t.name}</h4>
-                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                    <Check className="h-3.5 w-3.5 text-gold" />
-                    <span>Verified Patient</span>
-                  </div>
-                </div>
+              <div className="mt-6 pt-4 border-t border-border/70 flex items-center justify-between">
+                <span className="text-xs font-semibold uppercase tracking-wider text-primary">
+                  KAA Dental Care
+                </span>
+                <a
+                  href="#request"
+                  className="text-xs font-semibold text-gold hover:text-primary transition-colors flex items-center gap-1"
+                >
+                  Book appointment <ArrowRight className="h-3 w-3" />
+                </a>
               </div>
             </motion.div>
-          ))}
-
-          {/* 6th Card: Verified Clinic Trust Summary */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ duration: 0.5, delay: 5 * 0.08, ease: EASE_OUT }}
-            className="flex flex-col justify-between rounded-2xl border border-gold/40 bg-gradient-to-br from-gold/10 via-card to-card p-6 shadow-sm"
-          >
-            <div>
-              <div className="flex items-center gap-1 text-gold mb-3">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 fill-gold text-gold" />
-                ))}
-              </div>
-              <h3 className="font-display text-xl font-bold text-foreground">
-                Same-Day Emergency Relief
-              </h3>
-              <p className="mt-2 text-sm font-normal leading-relaxed text-muted-foreground">
-                Prompt emergency appointments across our Mountain Ash and Rhymney practices. We'll
-                diagnose the cause of pain and explain your options clearly.
-              </p>
-            </div>
-            <div className="mt-6 pt-4 border-t border-border/70 flex items-center justify-between">
-              <span className="text-xs font-semibold uppercase tracking-wider text-primary">
-                KAA Dental Care
-              </span>
-              <a
-                href="#request"
-                className="text-xs font-semibold text-gold hover:text-primary transition-colors flex items-center gap-1"
-              >
-                Book appointment <ArrowRight className="h-3 w-3" />
-              </a>
-            </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
