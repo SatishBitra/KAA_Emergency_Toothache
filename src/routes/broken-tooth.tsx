@@ -869,31 +869,35 @@ function BrokenToothPage() {
             <Badge>Broken Tooth Care</Badge>
 
             <h2 className="mt-4 text-2xl leading-tight md:text-3xl">
-              Broken or Chipped Tooth? We Can Help.
+              Get the Right Treatment for Your Broken Tooth
             </h2>
 
             <p className="mt-3 text-base font-normal leading-relaxed text-muted-foreground">
-              A broken, chipped or cracked tooth can cause sharp pain, sensitivity and difficulty
-              eating.
+              A broken or chipped tooth can cause pain, sensitivity or discomfort when eating. Even
+              if the damage looks small, it's worth getting it checked before it gets worse.
             </p>
 
             <p className="mt-3 text-base font-normal leading-relaxed text-muted-foreground">
-              Our emergency dentists can assess your broken tooth and provide the right treatment to
-              help restore your tooth and protect against further damage.
+              At KAA Dentals, we'll examine your tooth, explain what's needed and help you choose
+              the right treatment.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2.5">
               <span className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-secondary/50 px-3 py-1.5 text-xs font-medium text-foreground">
                 <Check className="h-3.5 w-3.5 text-gold" />
-                Prompt assessment
+                Broken or cracked teeth
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-secondary/50 px-3 py-1.5 text-xs font-medium text-foreground">
                 <Check className="h-3.5 w-3.5 text-gold" />
-                X-rays included if needed
+                Chipped or damaged teeth
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-secondary/50 px-3 py-1.5 text-xs font-medium text-foreground">
                 <Check className="h-3.5 w-3.5 text-gold" />
-                Gentle &amp; reassuring care
+                Tooth pain after an injury
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-lg border border-border bg-secondary/50 px-3 py-1.5 text-xs font-medium text-foreground">
+                <Check className="h-3.5 w-3.5 text-gold" />
+                Sharp edges or sensitivity
               </span>
             </div>
 
