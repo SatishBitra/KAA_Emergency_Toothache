@@ -601,7 +601,7 @@ function BrokenToothPage() {
               >
                 <Badge
                   light
-                  className="text-[9.5px] xs:text-[10px] sm:text-xs px-2.5 py-0.5 sm:px-3.5 sm:py-1 tracking-[0.05em] sm:tracking-[0.12em]"
+                  className="text-[10px] xs:text-[11px] sm:text-xs font-semibold px-2.5 py-0.5 sm:px-3.5 sm:py-1 tracking-[0.06em] sm:tracking-[0.12em]"
                 >
                   Same-Day Urgent Care • Mountain Ash &amp; Rhymney
                 </Badge>
@@ -610,7 +610,7 @@ function BrokenToothPage() {
                 initial={{ opacity: 0, y: 18 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.08, ease: EASE_OUT }}
-                className="mt-3.5 sm:mt-4 text-[1.95rem] xs:text-[2.15rem] sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold tracking-tight text-white leading-[1.15] sm:leading-[1.12]"
+                className="mt-3 sm:mt-4 text-[1.85rem] xs:text-[2.1rem] sm:text-4xl md:text-5xl lg:text-[3.25rem] font-extrabold sm:font-bold tracking-tight text-white leading-[1.16] sm:leading-[1.12]"
               >
                 Broken or Chipped Tooth?{" "}
                 <span className="text-gradient-gold block sm:inline md:block mt-0.5 sm:mt-0 md:mt-1">
@@ -621,7 +621,7 @@ function BrokenToothPage() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.14, ease: EASE_OUT }}
-                className="mt-3 sm:mt-4 text-[18px] sm:text-lg md:text-xl font-semibold text-gold-soft leading-snug"
+                className="mt-2.5 sm:mt-4 text-[15px] xs:text-base sm:text-lg md:text-xl font-medium sm:font-semibold text-gold-soft leading-relaxed sm:leading-snug"
               >
                 Broken, chipped or cracked your tooth? KAA Dentals can help. Get your tooth checked
                 by our dental team and find out which treatment is right for you.
@@ -630,7 +630,7 @@ function BrokenToothPage() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.18, ease: EASE_OUT }}
-                className="mt-2 text-sm sm:text-base md:text-lg font-normal leading-relaxed text-slate-200/90"
+                className="mt-2 sm:mt-2.5 text-[13px] xs:text-sm sm:text-base md:text-lg font-normal leading-relaxed text-slate-200/85"
               >
                 Don't ignore tooth pain or damage. Contact us for an emergency dental appointment
                 and get advice on the next steps.
@@ -641,11 +641,14 @@ function BrokenToothPage() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.22, ease: EASE_OUT }}
-                className="mt-5 sm:mt-6 mb-1 sm:mb-2 flex flex-wrap items-center gap-3"
+                className="mt-4 sm:mt-6 mb-1 sm:mb-2 flex flex-wrap items-center gap-3"
               >
                 <a
                   href="#hero-call-practices"
-                  className={`${CTA_BASE} bg-gold text-primary font-bold shadow-[var(--shadow-soft)] hover:bg-gold/90 hover:-translate-y-0.5 active:scale-[0.99]`}
+                  className={cn(
+                    CTA_BASE,
+                    "w-full xs:w-auto text-sm sm:text-base font-bold bg-gold text-primary shadow-[var(--shadow-soft)] hover:bg-gold/90 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:bg-gold/80 cursor-pointer",
+                  )}
                 >
                   <Phone className="h-4 w-4" /> Call us now ↓
                 </a>
@@ -660,13 +663,13 @@ function BrokenToothPage() {
               className="mt-6 sm:mt-7 md:mt-6 lg:mt-8 rounded-2xl border border-gold/30 bg-white/[0.06] p-4 sm:p-6 backdrop-blur-md flex flex-col justify-between"
             >
               <div>
-                <div className="border-b border-white/15 pb-3 sm:pb-4">
-                  <h2 className="text-sm sm:text-base md:text-lg font-semibold tracking-wide text-white">
+                <div className="border-b border-white/15 pb-2.5 sm:pb-4">
+                  <h2 className="text-[13.5px] xs:text-sm sm:text-base md:text-lg font-semibold tracking-wide text-white">
                     Emergency Appointments From £50
                   </h2>
                 </div>
 
-                <ul className="mt-3.5 sm:mt-4 space-y-2 sm:space-y-2.5 text-xs sm:text-sm md:text-base text-slate-100">
+                <ul className="mt-3 sm:mt-4 space-y-2 sm:space-y-2.5 text-[12px] xs:text-[13px] sm:text-sm md:text-base text-slate-100">
                   <li className="flex items-start gap-2.5 sm:gap-3">
                     <span className="mt-0.5 grid h-4.5 w-4.5 sm:h-5 sm:w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
                       <Check className="h-3 w-3 sm:h-3.5 sm:w-3.5 stroke-[2.5]" />
