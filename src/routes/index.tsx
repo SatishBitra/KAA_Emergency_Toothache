@@ -6,9 +6,12 @@ import {
   Check,
   Star,
   ArrowRight,
+  ArrowLeft,
+  Quote,
   Clock,
   ShieldCheck,
   HeartHandshake,
+  Heart,
   Menu,
   X,
   MessageCircle,
@@ -30,6 +33,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  type CarouselApi,
+} from "@/components/ui/carousel";
 import {
   Dialog,
   DialogContent,
@@ -87,6 +96,7 @@ const navItems = [
   { label: "Overview", href: "#overview" },
   { label: "The process", href: "#process" },
   { label: "Problems", href: "#problems" },
+  { label: "Reviews", href: "#testimonials" },
   { label: "FAQ", href: "#faq" },
   { label: "Practices", href: "#practices" },
 ];
@@ -115,6 +125,44 @@ const problems = [
     body: "Compromised or damaged teeth needing immediate pain stabilization or extraction.",
     cta: "Damaged tooth treatment",
     image: ec2Img,
+  },
+];
+
+const testimonials = [
+  {
+    name: "Peter Morgan",
+    initials: "PM",
+    rating: 5,
+    quote:
+      "I couldn't get into any dentists with my bad toothache. Phoned KAA Dentals, explained the situation. Straight away they made an appointment for me. So helpful and understanding.",
+  },
+  {
+    name: "Vickie Davies",
+    initials: "VD",
+    rating: 5,
+    quote:
+      "I needed an emergency appointment for an infection. I was booked in the same day, seen within minutes and ended up needing an extraction which was painless and over within moments.",
+  },
+  {
+    name: "Michael Sollis",
+    initials: "MS",
+    rating: 5,
+    quote:
+      "Had my appointment with Mr Hammond this afternoon re suspected tooth infection. He took an xray and showed me the results, explaining me what my options were. He was very professional and helpful.",
+  },
+  {
+    name: "Harry Miller",
+    initials: "HM",
+    rating: 5,
+    quote:
+      "I needed an emergency appointment last minute … and they fit me in the same day. The receptionist and dentist were very friendly and informative.",
+  },
+  {
+    name: "Keith Williams",
+    initials: "KW",
+    rating: 5,
+    quote:
+      "Tried getting emergency dental treatment for 10 days. Very nervous and anxious because of terrible previous experience. Got hold of KAA Dental Mountain Ash. So polite and reassuring. Put at ease straight away.",
   },
 ];
 
@@ -304,9 +352,70 @@ function PillNav({ active }: { active: string }) {
   );
 }
 
-/* 4 stack side-by-side blocks (hidden as requested) */
+const heroPillars = [
+  {
+    icon: MapPin,
+    label: "LOCAL CARE",
+    title: "Local emergency care",
+  },
+  {
+    icon: Clock,
+    label: "AVAILABILITY",
+    title: "Same-day emergency appointments",
+  },
+  {
+    icon: ShieldCheck,
+    label: "DIRECT ACCESS",
+    title: "No routine waiting list for emergency",
+  },
+  {
+    icon: Heart,
+    label: "PATIENT COMFORT",
+    title: "Gentle care for nervous patients",
+  },
+];
+
+/* 4 trust pillars bar positioned after Hero section */
 function PillarsSection() {
-  return null;
+  return (
+    <section
+      aria-label="Key features"
+      className="border-y border-border/70 bg-card/75 backdrop-blur-xs"
+    >
+      <div className="mx-auto max-w-6xl px-4 sm:px-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+          {heroPillars.map((item, index) => (
+            <div
+              key={item.label}
+              className={cn(
+                "flex items-center gap-3.5 sm:gap-4 py-5 sm:py-6 lg:py-7 px-3 sm:px-4 lg:px-5",
+                // Mobile divider
+                "border-b border-border/60 last:border-b-0",
+                // Tablet 2x2 dividers
+                "sm:border-b-0",
+                index % 2 === 0 ? "sm:border-r sm:border-border/60" : "",
+                index < 2 ? "sm:border-b sm:border-border/60 lg:border-b-0" : "",
+                // Desktop 4 cols dividers
+                index < 3 ? "lg:border-r lg:border-border/60" : "lg:border-r-0",
+              )}
+            >
+              <div className="flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-full border border-gold/40 bg-gold/10 text-gold">
+                <item.icon className="h-5 w-5 stroke-[1.8]" />
+              </div>
+              <div className="min-w-0">
+                <span className="block text-[10.5px] sm:text-[11px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                  {item.label}
+                </span>
+                <p className="mt-1 text-sm sm:text-[14.5px] font-semibold leading-snug text-foreground">
+                  {item.title}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }
 
 function EmergencyPage() {
@@ -315,7 +424,22 @@ function EmergencyPage() {
   const [privacyOpen, setPrivacyOpen] = useState(false);
   const [active, setActive] = useState(navItems[0].href);
   const [isCallingPracticesBlinking, setIsCallingPracticesBlinking] = useState(false);
+  const [testimonialApi, setTestimonialApi] = useState<CarouselApi>();
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const blinkTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    if (!testimonialApi) return;
+    const onSelect = () => {
+      setCurrentTestimonial(testimonialApi.selectedScrollSnap());
+    };
+    onSelect();
+    testimonialApi.on("select", onSelect);
+    testimonialApi.on("reInit", onSelect);
+    return () => {
+      testimonialApi.off("select", onSelect);
+    };
+  }, [testimonialApi]);
 
   useEffect(() => {
     return () => {
@@ -673,6 +797,9 @@ function EmergencyPage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Trust Pillars */}
+      <PillarsSection />
 
       {/* Overview Section */}
       <section
@@ -1155,6 +1282,181 @@ function EmergencyPage() {
               );
             })}
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section
+        id="testimonials"
+        className="mx-auto max-w-6xl scroll-mt-24 px-4 sm:px-5 py-8 sm:py-12 md:py-24"
+      >
+        <SectionHeading
+          badge="Reviews"
+          title="Hear From Our Happy Patients"
+          subtitle="Real feedback from patients who received urgent toothache treatment and reassuring care at KAA Dentals."
+        />
+
+        {/* Mobile View: Touch Carousel with hand swipe */}
+        <div className="mt-8 md:hidden">
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            setApi={setTestimonialApi}
+            className="w-full"
+          >
+            <CarouselContent className="-ml-3 pb-2">
+              {testimonials.map((t) => (
+                <CarouselItem key={t.name} className="pl-3 basis-[88%] xs:basis-[82%]">
+                  <div className="flex h-full min-h-[290px] flex-col justify-between rounded-2xl border border-border bg-card p-5 sm:p-6 shadow-sm">
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1 text-gold">
+                          {[...Array(t.rating)].map((_, i) => (
+                            <Star key={i} className="h-4 w-4 fill-gold text-gold" />
+                          ))}
+                        </div>
+                        <Quote className="h-5 w-5 text-gold/30 shrink-0" />
+                      </div>
+                      <p className="mt-4 text-sm font-normal leading-relaxed text-muted-foreground italic">
+                        “{t.quote}”
+                      </p>
+                    </div>
+
+                    <div className="mt-6 flex items-center gap-3 border-t border-border/70 pt-4">
+                      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold/15 font-display text-xs font-bold text-primary">
+                        {t.initials}
+                      </div>
+                      <div>
+                        <h4 className="font-display text-sm font-semibold text-foreground">
+                          {t.name}
+                        </h4>
+                        <div className="flex items-center gap-1 text-[11px] text-muted-foreground">
+                          <Check className="h-3 w-3 text-gold" />
+                          <span>Verified Patient</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+
+            {/* Mobile swipe controls: interactive dot indicators and prev/next buttons */}
+            <div className="mt-5 flex items-center justify-between px-1">
+              <div className="flex items-center gap-1.5">
+                {testimonials.map((_, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    aria-label={`Go to slide ${i + 1}`}
+                    onClick={() => testimonialApi?.scrollTo(i)}
+                    className={cn(
+                      "h-2 rounded-full transition-all duration-300",
+                      currentTestimonial === i
+                        ? "w-6 bg-gold"
+                        : "w-2 bg-border hover:bg-muted-foreground/40",
+                    )}
+                  />
+                ))}
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => testimonialApi?.scrollPrev()}
+                  aria-label="Previous testimonial"
+                  className="grid h-8 w-8 place-items-center rounded-full border border-border bg-card text-foreground shadow-xs transition hover:border-gold hover:text-gold active:scale-95"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => testimonialApi?.scrollNext()}
+                  aria-label="Next testimonial"
+                  className="grid h-8 w-8 place-items-center rounded-full border border-border bg-card text-foreground shadow-xs transition hover:border-gold hover:text-gold active:scale-95"
+                >
+                  <ArrowRight className="h-4 w-4" />
+                </button>
+              </div>
+            </div>
+          </Carousel>
+        </div>
+
+        {/* Desktop View: Grid of reviews with highlight card */}
+        <div className="mt-10 hidden md:grid md:grid-cols-3 gap-6">
+          {testimonials.map((t, idx) => (
+            <motion.div
+              key={t.name}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: idx * 0.08, ease: EASE_OUT }}
+              className="flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-sm transition-all hover:border-gold/60 hover:shadow-md"
+            >
+              <div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1 text-gold">
+                    {[...Array(t.rating)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-gold text-gold" />
+                    ))}
+                  </div>
+                  <Quote className="h-6 w-6 text-gold/30 shrink-0" />
+                </div>
+                <p className="mt-4 text-sm font-normal leading-relaxed text-muted-foreground italic">
+                  “{t.quote}”
+                </p>
+              </div>
+
+              <div className="mt-6 flex items-center gap-3 border-t border-border/70 pt-4">
+                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold/15 font-display text-xs font-bold text-primary">
+                  {t.initials}
+                </div>
+                <div>
+                  <h4 className="font-display text-sm font-semibold text-foreground">{t.name}</h4>
+                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                    <Check className="h-3.5 w-3.5 text-gold" />
+                    <span>Verified Patient</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+
+          {/* 6th Card: Verified Clinic Trust Summary */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.5, delay: 5 * 0.08, ease: EASE_OUT }}
+            className="flex flex-col justify-between rounded-2xl border border-gold/40 bg-gradient-to-br from-gold/10 via-card to-card p-6 shadow-sm"
+          >
+            <div>
+              <div className="flex items-center gap-1 text-gold mb-3">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="h-5 w-5 fill-gold text-gold" />
+                ))}
+              </div>
+              <h3 className="font-display text-xl font-bold text-foreground">
+                Same-Day Emergency Relief
+              </h3>
+              <p className="mt-2 text-sm font-normal leading-relaxed text-muted-foreground">
+                Prompt emergency appointments across our Mountain Ash and Rhymney practices. We'll
+                diagnose the cause of pain and explain your options clearly.
+              </p>
+            </div>
+            <div className="mt-6 pt-4 border-t border-border/70 flex items-center justify-between">
+              <span className="text-xs font-semibold uppercase tracking-wider text-primary">
+                KAA Dental Care
+              </span>
+              <a
+                href="#request"
+                className="text-xs font-semibold text-gold hover:text-primary transition-colors flex items-center gap-1"
+              >
+                Book appointment <ArrowRight className="h-3 w-3" />
+              </a>
+            </div>
+          </motion.div>
         </div>
       </section>
 
