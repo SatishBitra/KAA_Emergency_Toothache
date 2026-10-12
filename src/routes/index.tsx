@@ -661,7 +661,11 @@ function EmergencyPage() {
                   </h2>
                 </div>
 
-                <ul className="mt-3.5 sm:mt-4 space-y-2 sm:space-y-2.5 text-xs sm:text-sm md:text-base text-slate-100">
+                <p className="mt-3 sm:mt-3.5 text-xs sm:text-sm font-semibold text-gold-soft">
+                  Include:
+                </p>
+
+                <ul className="mt-2 sm:mt-2.5 space-y-2 sm:space-y-2.5 text-xs sm:text-sm md:text-base text-slate-100">
                   <li className="flex items-start gap-2.5 sm:gap-3">
                     <span className="mt-0.5 grid h-4.5 w-4.5 sm:h-5 sm:w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
                       <Check className="h-3 w-3 sm:h-3.5 sm:w-3.5 stroke-[2.5]" />

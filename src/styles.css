@@ -229,3 +229,7 @@
 @utility animate-gold-border-blink {
   animation: gold-border-blink 0.75s ease-in-out infinite;
 }
+
+.animate-gold-border-blink {
+  animation: gold-border-blink 0.75s ease-in-out infinite;
+}

@@ -404,20 +404,25 @@ function BrokenToothPage() {
     };
   }, []);
 
-  const handleMobileCallClick = (e: React.MouseEvent) => {
+  const handleCallUsNowClick = (e: React.MouseEvent) => {
     e.preventDefault();
     const el = document.getElementById("hero-call-practices");
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "center" });
-      setIsCallingPracticesBlinking(true);
-      if (blinkTimerRef.current) {
-        clearTimeout(blinkTimerRef.current);
-      }
-      blinkTimerRef.current = setTimeout(() => {
-        setIsCallingPracticesBlinking(false);
-      }, 5000);
     }
+    setIsCallingPracticesBlinking(false);
+    setTimeout(() => {
+      setIsCallingPracticesBlinking(true);
+    }, 20);
+    if (blinkTimerRef.current) {
+      clearTimeout(blinkTimerRef.current);
+    }
+    blinkTimerRef.current = setTimeout(() => {
+      setIsCallingPracticesBlinking(false);
+    }, 6000);
   };
+
+  const handleMobileCallClick = handleCallUsNowClick;
 
   useEffect(() => {
     const ids = navItems.map((n) => n.href.slice(1));
@@ -613,6 +618,7 @@ function BrokenToothPage() {
               >
                 <a
                   href="#hero-call-practices"
+                  onClick={handleCallUsNowClick}
                   className={cn(
                     CTA_BASE,
                     "w-full xs:w-auto text-sm sm:text-base font-bold bg-gold text-primary shadow-[var(--shadow-soft)] hover:bg-gold/90 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:bg-gold/80 cursor-pointer",
@@ -637,7 +643,11 @@ function BrokenToothPage() {
                   </h2>
                 </div>
 
-                <ul className="mt-3 sm:mt-4 space-y-2 sm:space-y-2.5 text-[12px] xs:text-[13px] sm:text-sm md:text-base text-slate-100">
+                <p className="mt-3 sm:mt-3.5 text-xs sm:text-sm font-semibold text-gold-soft">
+                  Include:
+                </p>
+
+                <ul className="mt-2 sm:mt-2.5 space-y-2 sm:space-y-2.5 text-[12px] xs:text-[13px] sm:text-sm md:text-base text-slate-100">
                   <li className="flex items-start gap-2.5 sm:gap-3">
                     <span className="mt-0.5 grid h-4.5 w-4.5 sm:h-5 sm:w-5 shrink-0 place-items-center rounded-full bg-gold/25 text-gold">
                       <Check className="h-3 w-3 sm:h-3.5 sm:w-3.5 stroke-[2.5]" />
@@ -756,7 +766,7 @@ function BrokenToothPage() {
                 <div
                   className={`mt-2.5 sm:mt-3 flex flex-col gap-1.5 sm:gap-2 rounded-xl sm:rounded-2xl p-1.5 sm:p-2 transition-all duration-300 ${
                     isCallingPracticesBlinking
-                      ? "border-2 border-gold animate-gold-border-blink bg-gold/10 shadow-[0_0_16px_rgba(200,160,80,0.35)]"
+                      ? "border-2 border-gold animate-gold-border-blink bg-gold/15 shadow-[0_0_20px_rgba(200,160,80,0.45)] ring-2 ring-gold/40"
                       : "border border-border/60 bg-secondary/35"
                   }`}
                 >
