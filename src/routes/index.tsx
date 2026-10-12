@@ -500,7 +500,15 @@ function EmergencyPage() {
             className="h-9 w-auto object-contain md:h-10"
           />
           <PillNav active={active} />
-          <div className="flex items-center justify-end gap-3">
+          <div className="flex items-center justify-end gap-2.5 sm:gap-3">
+            <a
+              href="/broken-tooth"
+              className="inline-flex items-center gap-1.5 rounded-cta border border-gold/50 bg-gold/15 px-3 py-1.5 text-xs sm:text-sm font-semibold text-primary transition-all hover:bg-gold hover:text-primary active:scale-95 shadow-xs"
+            >
+              <span className="hidden xs:inline">Broken Tooth</span>
+              <span className="xs:hidden">Broken</span>
+              <ArrowRight className="h-3.5 w-3.5 text-gold group-hover:text-primary" />
+            </a>
             <a
               href={WHATSAPP}
               target="_blank"
@@ -535,6 +543,18 @@ function EmergencyPage() {
         >
           <nav aria-label="Mobile sections" className="min-h-0">
             <ul className="px-5 py-3">
+              <li className="mb-2">
+                <a
+                  href="/broken-tooth"
+                  className="flex items-center justify-between rounded-lg bg-gold/15 px-3 py-2.5 text-sm font-semibold text-primary border border-gold/40"
+                >
+                  <span className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-gold" />
+                    Broken Tooth Care
+                  </span>
+                  <ArrowRight className="h-4 w-4 text-gold" />
+                </a>
+              </li>
               {navItems.map((n) => (
                 <li key={n.href}>
                   <a
@@ -612,7 +632,7 @@ function EmergencyPage() {
                 initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.55, delay: 0.14, ease: EASE_OUT }}
-                className="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl font-semibold text-gold-soft leading-snug"
+                className="mt-3 sm:mt-4 text-[18px] sm:text-lg md:text-xl font-semibold text-gold-soft leading-snug"
               >
                 Emergency toothache treatment from KAA Dentals.
               </motion.p>
