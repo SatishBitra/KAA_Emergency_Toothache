@@ -183,18 +183,24 @@ const areas = [
 const CTA_BASE =
   "inline-flex items-center justify-center gap-2 rounded-cta px-7 py-3.5 text-sm font-semibold transition-all duration-200 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-gold/50";
 
-function CallButton({ className = "" }: { className?: string }) {
+function CallButton({
+  className = "",
+  onClick,
+}: {
+  className?: string;
+  onClick?: (e: React.MouseEvent) => void;
+}) {
   return (
     <a
-      href={TEL}
+      href="#hero-call-practices"
+      onClick={onClick}
       className={cn(
         CTA_BASE,
-        "bg-gold text-primary shadow-[var(--shadow-soft)] hover:bg-gold/90 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:bg-gold/80",
+        "bg-gold text-primary shadow-[var(--shadow-soft)] hover:bg-gold/90 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:bg-gold/80 cursor-pointer",
         className,
       )}
     >
-      <Phone className="h-4 w-4" />
-      <span>Call now</span>
+      <Phone className="h-4 w-4" /> Call us now
     </a>
   );
 }
@@ -1769,7 +1775,10 @@ function ToothExtractionPage() {
                 Book Extraction Appointment
               </a>
 
-              <CallButton className="w-full sm:w-auto justify-center border border-white/25 bg-white/10 text-white font-semibold backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:border-white/40 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:bg-white/30 px-6 sm:px-7 py-3.5 sm:py-4 text-sm sm:text-base shadow-none cursor-pointer" />
+              <CallButton
+                onClick={handleCallUsNowClick}
+                className="w-full sm:w-auto justify-center border border-white/25 bg-white/10 text-white font-semibold backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:border-white/40 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:bg-white/30 px-6 sm:px-7 py-3.5 sm:py-4 text-sm sm:text-base shadow-none cursor-pointer"
+              />
             </div>
           </motion.div>
         </div>
