@@ -56,6 +56,8 @@ import { toast } from "sonner";
 import { Toaster } from "@/components/ui/sonner";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
+import { PageSwitcher } from "@/components/PageSwitcher";
+import { TREATMENT_PAGES } from "@/lib/treatment-pages";
 
 const EASE_OUT = [0.22, 1, 0.36, 1] as const;
 
@@ -208,7 +210,7 @@ const areas = [
 ];
 
 const CTA_BASE =
-  "inline-flex items-center justify-center gap-2 rounded-cta px-7 py-3.5 text-sm font-medium transition-all";
+  "inline-flex items-center justify-center gap-2 rounded-cta px-7 py-3.5 text-sm font-semibold transition-all duration-200 cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-gold/50";
 
 function CallButton({ className = "" }: { className?: string }) {
   return (
@@ -216,7 +218,7 @@ function CallButton({ className = "" }: { className?: string }) {
       href={TEL}
       className={cn(
         CTA_BASE,
-        "bg-gold text-primary shadow-[var(--shadow-soft)] hover:-translate-y-0.5",
+        "bg-gold text-primary shadow-[var(--shadow-soft)] hover:bg-gold/90 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:bg-gold/80 cursor-pointer",
         className,
       )}
     >
@@ -231,7 +233,7 @@ function BookButton({ className = "" }: { className?: string }) {
       href="#request"
       className={cn(
         CTA_BASE,
-        "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md hover:-translate-y-0.5 active:scale-[0.99]",
+        "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:bg-primary/80 cursor-pointer",
         className,
       )}
     >
@@ -336,18 +338,23 @@ function PillNav({ active }: { active: string }) {
         className="absolute top-1 bottom-1 rounded-full bg-secondary transition-[left,width,opacity] duration-500 ease-[cubic-bezier(.4,0,.2,1)]"
         style={{ left: indicator.left, width: indicator.width, opacity: indicator.ready ? 1 : 0 }}
       />
-      {navItems.map((n) => (
-        <a
-          key={n.href}
-          href={n.href}
-          data-href={n.href}
-          className={`relative z-10 rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300 ${
-            active === n.href ? "text-primary" : "text-muted-foreground hover:text-foreground"
-          }`}
-        >
-          {n.label}
-        </a>
-      ))}
+      {navItems.map((n) => {
+        const isActive = active === n.href;
+        return (
+          <a
+            key={n.href}
+            href={n.href}
+            data-href={n.href}
+            className={`relative z-10 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 outline-none focus-visible:ring-2 focus-visible:ring-gold/50 cursor-pointer active:scale-95 ${
+              isActive
+                ? "text-primary font-bold shadow-xs"
+                : "text-muted-foreground hover:text-foreground hover:bg-gold/15 active:bg-gold/25"
+            }`}
+          >
+            {n.label}
+          </a>
+        );
+      })}
     </nav>
   );
 }
@@ -501,19 +508,13 @@ function EmergencyPage() {
           />
           <PillNav active={active} />
           <div className="flex items-center justify-end gap-2.5 sm:gap-3">
-            <a
-              href="/broken-tooth"
-              className="inline-flex items-center gap-1.5 rounded-cta border border-gold/50 bg-gold/15 px-3 py-1.5 text-xs sm:text-sm font-semibold text-primary transition-all hover:bg-gold hover:text-primary active:scale-95 shadow-xs"
-            >
-              <span className="hidden xs:inline">Broken Tooth</span>
-              <span className="xs:hidden">Broken</span>
-              <ArrowRight className="h-3.5 w-3.5 text-gold group-hover:text-primary" />
-            </a>
+            {/* Page Switcher Dropdown */}
+            <PageSwitcher currentPath="/" />
             <a
               href={WHATSAPP}
               target="_blank"
               rel="noreferrer"
-              className="hidden items-center gap-2 rounded-cta bg-whatsapp px-4 py-2 text-sm font-medium text-whatsapp-foreground shadow-sm transition hover:opacity-90 sm:inline-flex"
+              className="hidden items-center gap-2 rounded-cta bg-whatsapp px-4 py-2 text-sm font-medium text-whatsapp-foreground shadow-sm transition-all duration-200 hover:opacity-95 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-95 active:brightness-90 sm:inline-flex cursor-pointer"
             >
               <img
                 src={WHATSAPP_ICON_WHITE}
@@ -528,7 +529,10 @@ function EmergencyPage() {
               aria-label={menuOpen ? "Close menu" : "Open menu"}
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((o) => !o)}
-              className="grid h-10 w-10 place-items-center rounded-cta border border-border bg-card md:hidden"
+              className={cn(
+                "grid h-10 w-10 place-items-center rounded-cta border border-border bg-card transition-all duration-200 hover:border-gold/50 hover:bg-gold/10 hover:text-primary active:scale-90 md:hidden cursor-pointer",
+                menuOpen && "border-gold bg-gold/15 text-primary",
+              )}
             >
               {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -543,29 +547,58 @@ function EmergencyPage() {
         >
           <nav aria-label="Mobile sections" className="min-h-0">
             <ul className="px-5 py-3">
-              <li className="mb-2">
-                <a
-                  href="/broken-tooth"
-                  className="flex items-center justify-between rounded-lg bg-gold/15 px-3 py-2.5 text-sm font-semibold text-primary border border-gold/40"
-                >
-                  <span className="flex items-center gap-2">
-                    <span className="h-2 w-2 rounded-full bg-gold" />
-                    Broken Tooth Care
-                  </span>
-                  <ArrowRight className="h-4 w-4 text-gold" />
-                </a>
+              <li className="mb-3 space-y-1">
+                <div className="px-1 text-[11px] font-bold uppercase tracking-wider text-muted-foreground">
+                  Choose Treatment
+                </div>
+                <div className="grid grid-cols-1 gap-1.5 pt-1">
+                  {TREATMENT_PAGES.map((page) => {
+                    const isActive = page.href === "/";
+                    return (
+                      <a
+                        key={page.href}
+                        href={page.href}
+                        className={cn(
+                          "group/treat flex items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold transition-all duration-150 active:scale-[0.98]",
+                          isActive
+                            ? "bg-gold/20 text-primary border border-gold/40 font-bold hover:bg-gold/30 hover:border-gold shadow-xs"
+                            : "bg-muted/40 text-foreground hover:bg-gold/15 hover:text-primary hover:border hover:border-gold/30 hover:translate-x-0.5 active:bg-gold/25",
+                        )}
+                      >
+                        <span className="flex items-center gap-2">
+                          <span
+                            className={cn(
+                              "h-2 w-2 rounded-full transition-transform group-hover/treat:scale-125",
+                              isActive ? "bg-gold" : "bg-muted-foreground/40",
+                            )}
+                          />
+                          {page.name}
+                        </span>
+                        {isActive ? (
+                          <span className="text-[10px] font-medium text-gold uppercase tracking-wider">
+                            Current
+                          </span>
+                        ) : (
+                          <ArrowRight className="h-3.5 w-3.5 text-gold transition-transform group-hover/treat:translate-x-1" />
+                        )}
+                      </a>
+                    );
+                  })}
+                </div>
               </li>
               {navItems.map((n) => (
                 <li key={n.href}>
                   <a
                     href={n.href}
                     onClick={() => setMenuOpen(false)}
-                    className={`flex items-center justify-between rounded-lg px-3 py-3 text-base font-medium transition-colors ${
-                      active === n.href ? "bg-secondary text-primary" : "text-foreground"
+                    className={`group/nav flex items-center justify-between rounded-lg px-3 py-3 text-base font-medium transition-all duration-150 hover:bg-secondary/70 hover:text-primary hover:translate-x-0.5 active:scale-[0.98] active:bg-secondary ${
+                      active === n.href
+                        ? "bg-secondary text-primary font-bold border-l-3 border-gold"
+                        : "text-foreground"
                     }`}
                   >
                     {n.label}
-                    <ArrowRight className="h-4 w-4 text-gold" />
+                    <ArrowRight className="h-4 w-4 text-gold transition-transform group-hover/nav:translate-x-1" />
                   </a>
                 </li>
               ))}
@@ -574,7 +607,7 @@ function EmergencyPage() {
                   href={WHATSAPP}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2 rounded-lg bg-whatsapp/15 px-3 py-2 text-sm font-medium text-primary"
+                  className="flex items-center gap-2 rounded-lg bg-whatsapp/15 px-3 py-2.5 text-sm font-semibold text-primary transition-all duration-150 hover:bg-whatsapp/25 active:scale-[0.98] cursor-pointer"
                 >
                   <img
                     src={WHATSAPP_ICON_GREEN}
@@ -752,7 +785,7 @@ function EmergencyPage() {
                 <div className="mt-3.5 sm:mt-5">
                   <a
                     href="#request"
-                    className={`${CTA_BASE} w-full justify-center bg-gold text-primary text-sm sm:text-base font-bold tracking-wide shadow-[var(--shadow-soft)] hover:bg-gold/90 hover:-translate-y-0.5 active:scale-[0.99] py-3.5 sm:py-4`}
+                    className={`${CTA_BASE} w-full justify-center bg-gold text-primary text-sm sm:text-base font-bold tracking-wide shadow-[var(--shadow-soft)] hover:bg-gold/90 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:bg-gold/80 py-3.5 sm:py-4 cursor-pointer`}
                   >
                     Book Emergency Appointment
                   </a>
@@ -773,21 +806,21 @@ function EmergencyPage() {
                 <div
                   className={`mt-2.5 sm:mt-3 flex flex-col gap-1.5 sm:gap-2 rounded-xl sm:rounded-2xl p-1.5 sm:p-2 transition-all duration-300 ${
                     isCallingPracticesBlinking
-                      ? "border-2 border-gold animate-gold-border-blink bg-gold/10 shadow-[0_0_16px_rgba(200,160,80,0.35)]"
+                      ? "border-2 border-gold animate-gold-border-blink bg-gold/15 shadow-[0_0_20px_rgba(200,160,80,0.45)] ring-2 ring-gold/40"
                       : "border border-border/60 bg-secondary/35"
                   }`}
                 >
                   <a
                     href="tel:01443474441"
                     onClick={() => setIsCallingPracticesBlinking(false)}
-                    className="group flex items-center justify-between rounded-lg sm:rounded-xl px-2.5 py-2 sm:px-3 sm:py-2.5 text-xs sm:text-sm font-medium transition-colors hover:bg-gold/15"
+                    className="group flex items-center justify-between rounded-lg sm:rounded-xl px-2.5 py-2 sm:px-3 sm:py-2.5 text-xs sm:text-sm font-medium transition-all duration-150 hover:bg-gold/20 hover:border-gold/40 hover:translate-x-0.5 active:scale-[0.98] active:bg-gold/30 cursor-pointer"
                   >
                     <span className="flex items-center gap-2 sm:gap-2.5">
                       <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 text-gold transition-transform group-hover:scale-110" />
                       <span className="font-semibold text-foreground">Mountain Ash</span>
                     </span>
                     <span className="flex items-center gap-1 sm:gap-1.5 font-bold tracking-tight text-primary transition-colors group-hover:text-gold">
-                      <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0 text-gold" />
+                      <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0 text-gold transition-transform group-hover:scale-110" />
                       <span className="tabular-nums">01443 474 441</span>
                     </span>
                   </a>
@@ -795,14 +828,14 @@ function EmergencyPage() {
                   <a
                     href="tel:01685840700"
                     onClick={() => setIsCallingPracticesBlinking(false)}
-                    className="group flex items-center justify-between rounded-lg sm:rounded-xl px-2.5 py-2 sm:px-3 sm:py-2.5 text-xs sm:text-sm font-medium transition-colors hover:bg-gold/15"
+                    className="group flex items-center justify-between rounded-lg sm:rounded-xl px-2.5 py-2 sm:px-3 sm:py-2.5 text-xs sm:text-sm font-medium transition-all duration-150 hover:bg-gold/20 hover:border-gold/40 hover:translate-x-0.5 active:scale-[0.98] active:bg-gold/30 cursor-pointer"
                   >
                     <span className="flex items-center gap-2 sm:gap-2.5">
                       <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0 text-gold transition-transform group-hover:scale-110" />
                       <span className="font-semibold text-foreground">Rhymney</span>
                     </span>
                     <span className="flex items-center gap-1 sm:gap-1.5 font-bold tracking-tight text-primary transition-colors group-hover:text-gold">
-                      <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0 text-gold" />
+                      <Phone className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0 text-gold transition-transform group-hover:scale-110" />
                       <span className="tabular-nums">01685 840 700</span>
                     </span>
                   </a>
@@ -892,7 +925,7 @@ function EmergencyPage() {
             <div className="mt-8">
               <a
                 href="#request"
-                className={`${CTA_BASE} bg-primary text-primary-foreground font-semibold shadow-sm hover:bg-primary/90 hover:shadow-md hover:-translate-y-0.5 active:scale-[0.99]`}
+                className={`${CTA_BASE} bg-primary text-primary-foreground font-semibold shadow-sm hover:bg-primary/90 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:bg-primary/80 cursor-pointer`}
               >
                 Book Your Emergency Appointment
               </a>
@@ -1643,14 +1676,14 @@ function EmergencyPage() {
                   href={p.mapUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className={`${CTA_BASE} flex-1 border border-gold/60 bg-transparent px-5 py-3 text-foreground transition-all hover:bg-gold/15`}
+                  className={`${CTA_BASE} flex-1 border border-gold/60 bg-transparent px-5 py-3 text-foreground transition-all duration-200 hover:bg-gold/15 hover:border-gold hover:text-primary hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:bg-gold/25 cursor-pointer`}
                 >
                   <MapPin className="h-4 w-4 text-gold" />
                   <span>Directions</span>
                 </a>
                 <a
                   href={p.tel}
-                  className={`${CTA_BASE} flex-1 bg-primary px-5 py-3 text-primary-foreground hover:bg-primary/90`}
+                  className={`${CTA_BASE} flex-1 bg-primary px-5 py-3 text-primary-foreground hover:bg-primary/90 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:bg-primary/80 cursor-pointer`}
                 >
                   <Phone className="h-4 w-4" />
                   <span>Call practice</span>
@@ -1690,12 +1723,12 @@ function EmergencyPage() {
             <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-start md:justify-center gap-3.5 sm:gap-4 w-full sm:w-auto">
               <a
                 href="#request"
-                className={`${CTA_BASE} w-full sm:w-auto justify-center bg-gold text-primary font-bold tracking-wide shadow-[var(--shadow-soft)] hover:bg-gold/90 hover:-translate-y-0.5 active:scale-[0.99] px-7 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base`}
+                className={`${CTA_BASE} w-full sm:w-auto justify-center bg-gold text-primary font-bold tracking-wide shadow-[var(--shadow-soft)] hover:bg-gold/90 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:bg-gold/80 px-7 sm:px-8 py-3.5 sm:py-4 text-sm sm:text-base cursor-pointer`}
               >
                 Book Emergency Appointment
               </a>
 
-              <CallButton className="w-full sm:w-auto justify-center border border-white/25 bg-white/10 text-white font-semibold backdrop-blur-sm transition-all hover:bg-white/20 hover:-translate-y-0.5 active:scale-[0.99] px-6 sm:px-7 py-3.5 sm:py-4 text-sm sm:text-base shadow-none" />
+              <CallButton className="w-full sm:w-auto justify-center border border-white/25 bg-white/10 text-white font-semibold backdrop-blur-sm transition-all duration-200 hover:bg-white/20 hover:border-white/40 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] active:bg-white/30 px-6 sm:px-7 py-3.5 sm:py-4 text-sm sm:text-base shadow-none cursor-pointer" />
             </div>
           </motion.div>
         </div>
@@ -1709,7 +1742,7 @@ function EmergencyPage() {
         <button
           type="button"
           onClick={handleMobileCallClick}
-          className="flex items-center justify-center gap-2 bg-gold py-4 text-sm font-medium text-primary transition-colors active:brightness-90"
+          className="flex items-center justify-center gap-2 bg-gold py-4 text-sm font-semibold text-primary transition-all duration-150 hover:bg-gold/90 active:bg-gold/80 active:scale-95 cursor-pointer"
         >
           <Phone className="h-4 w-4" /> Call
         </button>
@@ -1717,7 +1750,7 @@ function EmergencyPage() {
           href={WHATSAPP}
           target="_blank"
           rel="noreferrer"
-          className="flex items-center justify-center gap-2 bg-whatsapp py-4 text-sm font-medium text-whatsapp-foreground"
+          className="flex items-center justify-center gap-2 bg-whatsapp py-4 text-sm font-semibold text-whatsapp-foreground transition-all duration-150 hover:opacity-95 active:brightness-90 active:scale-95 cursor-pointer"
         >
           <img
             src={WHATSAPP_ICON_WHITE}
@@ -1729,7 +1762,7 @@ function EmergencyPage() {
         </a>
         <a
           href="#request"
-          className="flex items-center justify-center gap-2 bg-navy-deep py-4 text-sm font-medium text-primary-foreground"
+          className="flex items-center justify-center gap-2 bg-navy-deep py-4 text-sm font-semibold text-primary-foreground transition-all duration-150 hover:bg-navy-deep/90 active:bg-navy-deep/80 active:scale-95 cursor-pointer"
         >
           <CalendarDays className="h-4 w-4" /> Book
         </a>
