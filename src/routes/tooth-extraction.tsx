@@ -18,9 +18,9 @@ import {
   ChevronDown,
 } from "lucide-react";
 import logoImg from "@/assets/KH-scaled-1-2048x588.png.webp";
-import qawImg from "@/assets/qaw.png";
-import ke2Img from "@/assets/ke2.png";
-import ke3Img from "@/assets/ke3.png";
+import qqwa1Img from "@/assets/qqwa1.png";
+import qwe1Img from "@/assets/qwe1.png";
+import qw2Img from "@/assets/qw2.png";
 import tcaImg from "@/assets/tca.png";
 import whatsappWhiteIcon from "@/assets/whatsapp-white.svg";
 import whatsappGreenIcon from "@/assets/whatsapp-green.svg";
@@ -741,7 +741,7 @@ function ToothExtractionPage() {
           >
             <div className="relative aspect-[16/10] w-full overflow-hidden bg-secondary">
               <img
-                src={qawImg}
+                src={qqwa1Img}
                 alt="Emergency tooth extraction treatment and dental assessment at KAA Dentals"
                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
                 loading="eager"
@@ -1292,14 +1292,14 @@ function ToothExtractionPage() {
               <div>
                 <div className="relative mb-5 aspect-[16/10] w-full overflow-hidden rounded-xl border border-border/70 bg-secondary transition-colors group-hover:border-gold/50">
                   <img
-                    src={ke2Img}
+                    src={qwe1Img}
                     alt="Routine Tooth Extraction procedure at KAA Dentals"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold text-foreground">
+                <h3 className="text-xl sm:text-2xl font-normal text-foreground">
                   Routine Tooth Extraction
                 </h3>
 
@@ -1331,14 +1331,14 @@ function ToothExtractionPage() {
               <div>
                 <div className="relative mb-5 aspect-[16/10] w-full overflow-hidden rounded-xl border border-border/70 bg-secondary transition-colors group-hover:border-gold/50">
                   <img
-                    src={ke3Img}
+                    src={qw2Img}
                     alt="Surgical Tooth Extraction treatment at KAA Dentals"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold text-foreground">
+                <h3 className="text-xl sm:text-2xl font-normal text-foreground">
                   Surgical Tooth Extraction
                 </h3>
 
