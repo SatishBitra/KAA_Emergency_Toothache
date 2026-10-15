@@ -1250,9 +1250,10 @@ function BrokenToothPage() {
             <h3 className="mt-3 text-lg">Common treatment prices</h3>
             <dl className="mt-3 space-y-2 text-sm">
               {[
-                ["Tooth bonding / repair", "£100"],
-                ["Dental filling", "£100"],
+                ["Tooth Extraction", "£150"],
+                ["Surgical extraction", "£250"],
                 ["Root canal", "£200"],
+                ["Filling", "£100"],
               ].map(([k, v]) => (
                 <div key={k} className="flex justify-between border-b border-border pb-1.5">
                   <dt className="text-muted-foreground">{k}</dt>
@@ -1260,9 +1261,6 @@ function BrokenToothPage() {
                 </div>
               ))}
             </dl>
-            <p className="mt-3 text-xs italic font-normal text-muted-foreground">
-              Prices are starting prices and may vary depending on the treatment required.
-            </p>
           </motion.div>
         </div>
 
